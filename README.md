@@ -1,1 +1,1 @@
-This a brief display of one of website portfolio
+This a brief display of one of my website portfolio
