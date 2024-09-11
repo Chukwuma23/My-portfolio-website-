@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // typing text animation script
   var typed = new Typed(".typing", {
-    strings: ["Frontend Web Developer", "Back-end web developer", "web designer", "Freelancer", 'UI/UX designer', "App development"],
+    strings: ["Front-end Web Developer", "Back-end web developer", "web designer", "Freelancer", 'UI/UX designer', "App developer"],
     typeSpeed: 100,
     backSpeed: 60,
     loop: true
