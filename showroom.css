@@ -143,7 +143,7 @@ body {
 /* footer section styling */
 footer {
       background: #111;
-      padding: 0px 10px;
+      padding: 10px 10px;
       color: #fff;
       text-align: center;
       position: fixed;
@@ -151,7 +151,7 @@ footer {
       bottom: 0;
       left: 0;
       height: 60px;
-     
+      width:100%;
     }
 
     footer span a {
