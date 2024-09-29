@@ -80,7 +80,7 @@ function addTask() {
             completed: false
         };
         tasks.push(task);
-        //saveTasks();
+        saveTasks();
         displayTasks();
         taskInput.value = '';
 document.getElementById('settings-modal').style.display = 'block'
