@@ -397,7 +397,7 @@ windowElement.addEventListener('animationend', () => {
     windowElement.style.display = 'none';
     alert('Welcome to my to-do list app.☺️ Note: please note this app is not fully functional yet.\n I will be adding more features to suite your needs through your suggestions so feel free to message for any information.\n Your suggestions are needed, thanks for viewing.' )
 
-  }, 400);
+  }, 500);
 }, { once: true });
 
 const spans = document.querySelectorAll('.window span');
