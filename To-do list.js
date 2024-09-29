@@ -48,16 +48,7 @@ let currentTaskIndex = null;
 // Add event listener to add task button
 addTaskBtn.addEventListener('click', addTask);
 
-// Add event listener to delete button and settings icon on the to do list.
-/*taskList.addEventListener('click', (event) => {
-  if (event.target.classList.contains('delete-task-btn')) {
-    deleteTask(event);
-    
-     } if (event.target.classList.contains('settings-img')) {
-    editTask(event);
-  }else{
-}
- });*/
+
 
 taskList.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete-task-btn')) {
@@ -98,43 +89,7 @@ function addTask() {
 
 
 
-// Function to display tasks
-/*function displayTasks() {
-  taskList.innerHTML = '';
-  tasks.forEach((task, index) => {
-    const taskElement = document.createElement('LI');
-    taskElement.innerHTML = `
-      ${task.text} - ${task.category} - ${task.priority} - ${task.dueDate} - ${task.dueTime}
-      <button class="delete-task-btn" data-index="${index}">Delete</button>
-    `;
-    taskElement.dataset.index = index;
-    taskElement.addEventListener('click', (event) => {
-      if (event.target.classList.contains('delete-task-btn')) {
-        deleteTask(event);
-      } else {
-        editTask(event);
-      }
-    });
-    taskList.appendChild(taskElement);
-  });
-}*/
 
-
-
-
-
-/*function editTask(event) {
-  const taskElement = event.target.closest('li');
-  const taskIndex = taskElement.dataset.index;
-  currentTaskIndex = parseInt(taskIndex);
-  const task = tasks[currentTaskIndex];
-  taskTextInput.value = task.text;
-  categorySelect.value = task.category;
-  prioritySelect.value = task.priority;
-  dueDateInput.value = task.dueDate;
-  dueTimeInput.value = task.dueTime;
-  settingsModal.style.display = 'block';
-}*/
 
 // Function to save task settings
 function saveTaskSettings() {
@@ -191,10 +146,10 @@ function saveTask() {
 }
 
 
-// Function to display tasks
 
 
-// Function to edit task
+
+
 
 
 // Update dashboard
@@ -215,33 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Function to edit task
-/*function editTask(event) {
-    const taskIndex = event.target.dataset.index;
-    currentTaskIndex = parseInt(taskIndex);
-    const task = tasks[currentTaskIndex];
-    taskTextInput.value = task.text;
-    categorySelect.value = task.category;
-    prioritySelect.value = task.priority;
-    dueDateInput.value = task.dueDate;
-    dueTimeInput.value = task.dueTime;
-    settingsModal.style.display = 'block';
-}
-
-
-// Delete task function
-function deleteTask(event) {
-  const taskIndex = event.target.dataset.index;
-  
-  // Confirm deletion
-  const confirmDelete = confirm(`Are you sure you want to delete task ${tasks[taskIndex].text}?`);
-  
-  if (confirmDelete) {
-    tasks.splice(taskIndex, 1);
-    saveTasks();
-    displayTasks();
-  }
-}*/
 
 
 
@@ -276,14 +204,6 @@ function toggleTaskCompletion(event) {
 
 
 /////////////////REMINDER///////////////
-//You've provided the code for your To-Do List app.
-
-
-//To implement reminders without using Twilio API:
-
-
-//1. Store reminder dates and times in the task object.
-//2. Use JavaScript's `setInterval` or `setTimeout` functions to schedule reminders.
 
 const reminderDateInput = document.getElementById('reminder-date');
 const reminderTimeInput = document.getElementById('reminder-time');
@@ -293,24 +213,7 @@ const reminderTimeInput = document.getElementById('reminder-time');
 
 
 
-/*function editTask(event) {
-  const taskIndex = event.target.dataset.index;
-  currentTaskIndex = parseInt(taskIndex);
-  if (tasks[currentTaskIndex]) {
-    const task = tasks[currentTaskIndex];
-    taskTextInput.value = task.text;
-    categorySelect.value = task.category;
-    prioritySelect.value = task.priority;
-    dueDateInput.value = task.dueDate;
-    dueTimeInput.value = task.dueTime;
-    reminderDateInput.value = task.reminderDate;
-    reminderTimeInput.value = task.reminderTime;
-    settingsModal.style.display = 'block';
-  } else {
-    console.error('Task not found');
-  }
-  updateDashboard();
-}*/
+
 function displayTasks() {
   taskList.innerHTML = '';
   tasks.forEach((task, index) => {
@@ -320,7 +223,7 @@ function displayTasks() {
     taskElement.innerHTML = `
       ${task.text} - ${task.category} - ${task.priority} - ${task.dueDate} - ${task.dueTime}
       <button class="delete-task-btn" data-index="${index}">Delete</button>
-      <img onclick='openSetting()' class="settings-img" src="/To do list /settings (2).png" data-index="${index}" height="30" width="30">
+      <img onclick='openSetting()' class="settings-img" src="./settings (2).png" data-index="${index}" height="30" width="30">
     `;
     taskList.appendChild(taskElement);
   });
@@ -375,17 +278,7 @@ const alarmSounds = [
   { name: 'Alarm 3', file: 'alarm3.mp3' },
 ];
 
-// Function to display reminder
-/*function displayReminder(task) {
-  alert(`Reminder: ${task.text} is due on ${task.dueDate} at ${task.dueTime}!`);
-  
-  // Get selected alarm sounds
-  const selectedSound = document.getElementById('alarm-select').value;
-  
-  // Play selected alarm sound
-  const audio = new Audio(selectedSound);
-  audio.play();
-}*/
+
 
 
 //WINDOW DISPLAY. 
