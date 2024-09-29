@@ -1,0 +1,576 @@
+body {
+  margin: 0;
+  
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.banner{
+    background: #FF9D03;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    color:white;
+    text-align: center ;
+}
+
+.banner h2{
+    position: relative;
+   top: 10px;
+    
+}
+
+
+#ToDoList-fluid{
+ height: 50vh;   
+ 
+}
+
+#row{
+    position: relative;
+    top: 70px;
+}
+
+
+
+
+
+#priority{
+    position: relative;
+    
+}
+
+
+.text-center{
+    position: relative;
+    top: 50px;
+    left: -40px;
+}
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+div li {
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #5D5D5D;
+  font-size: 18px;
+  transition: 0.2s;
+  text-decoration: none;
+  outline: none;
+  border-radius: 10px;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #FFFFFF;
+  
+}
+
+
+/* Set all odd list items to a different color (zebra-stripes) */
+div li:nth-child(odd) {
+  background: #ECECEC;
+  color: #000000;
+  border-radius: 10px;
+}
+
+/* Darker background-color on hover */
+div li:hover {
+  background: #8D8D8D;
+  color: #000000;
+}
+
+/* When clicked on, add a background color and strike out text */
+div li.checked {
+  background: #505050;
+  color: #FFFFFF;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+div li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+ 
+ 
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  font-size: 20px;
+  border: none;
+  right :-10px;
+  top: -10px;
+  padding: 12px 16px 12px 16px;
+  color:#FF9D03;
+  
+}
+
+.close:hover {
+  background-color:#CF9153 ;
+  
+}
+
+/* Style the header */
+.header {
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #D9D7D7;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 0px;
+  left: 10px;
+  width: 90%;
+  height: 66px;
+  color:#000000;
+    }
+    
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*Style the input */
+#myInput {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 50%;
+  padding: 10px;
+  float: right;
+  font-size: 16px;
+  background: #FFFFFF;
+  position: relative;
+  top: 0px;
+  left: 0;
+  font-size: 13px;
+  color: #383838 ;
+  font-family:sans-serif ;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.56)!important;
+  border-radius:10px;
+  border: none;
+ z-index: 3;
+}
+
+/* Style the "Add" button */
+#addbtn {
+    background: #FFFFFF;
+  padding: 20px;
+  width: 70px;
+  height: 55px;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  transition: 0.3s;
+  position: relative;
+  top:0px;
+  left: -10px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.56)!important;
+  border-radius: 10px;
+  z-index: 9;
+}
+
+.addBtn:hover {
+  background-color: #ECECEC;
+}
+
+#myUL{
+    position: relative;
+    top:50px;
+    left: 0px;
+    background: transparent;
+   overflow-wrap: break-word;
+    overflow: auto;
+    max-height: 390px;
+    color: #000000;
+    height: 90vh;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100vh;
+    font-size: 20px;
+    text-align: left;
+}
+
+
+#settings-modal{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    
+    background: #121212;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(56, 56, 56, 0.68);
+    animation: pop 0.6s ease-in-out;
+    color:#FFFFFF;
+   z-index: 9;
+   transition: transform 0.5s;
+}
+
+
+#settings-modal.hide {
+  transform: scale(0);
+}
+
+/*.with-delay {
+  animation-delay: 0s;
+}*/
+
+
+#settings-modal-banner{
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    top: 0;
+    background:#FF9D03 ;
+    text-align: center;
+    
+}
+
+#model-img{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left:15px;
+    top: 10px;
+}
+
+#settings-modal-banner h2{
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+}
+
+#container{
+    position: relative;
+    width: 90%;
+    top: 100px;
+    animation: pop 0.60s ease-in-out;
+}
+@keyframes pop{
+  50%  {
+    transform: scale(1.25);
+  }
+
+}
+#import-btn{
+    position: relative ;
+    top: 0px;
+    left:70px;
+    
+}
+#export-btn{
+position: relative ;
+    top: 0px;
+   
+}
+
+#completed-tasks{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
+#save-settings-btn{
+    position: relative;
+    right: 0px;
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+
+ #ToDoList-container h3{
+    position: absolute;
+    left: 150px;
+    top: 15px;
+    color: #FFFFFF;
+    font-size:20px ;
+}
+#save-btn{
+    position: relative;
+    top:0px;
+    left: -70px;
+    background: #FF9D03B3;
+    color: #FFFFFF;
+    font-size: 20px;
+    border:none;
+    
+}
+
+#save-btn:active{
+    transform: scale(2.0);
+    transition: 0.3s;
+}
+
+
+.list-icon{
+  background-color: #FF9D038F;
+  width:4px;
+  height :4px;
+  margin-left: 4px;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition:0.2s;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+
+.icon-div{
+    position:relative;
+    display: flex;
+    justify-content:flex-end;
+    float: left;
+    top: 20px;
+    left: -30px;
+}
+
+
+#todo-dashboard{
+    position: relative;
+    left: 0px;
+    top: -310px;
+    width: 60px;
+    height: 60px;
+    background: #00000073;
+    color:#FFFFFF;
+    display: none;
+    border-radius:30px;
+}
+
+
+.container{
+    text-align: center;
+}
+
+
+#settings-container{
+    animation: pop 0.60s ease-in-out;
+}
+@keyframes pop{
+  50%  {
+    transform: scale(1.25);
+  }
+
+}
+
+
+
+#option{
+    position: absolute;
+    width: 90%;
+    right: 18px;
+    top: 150px;
+    display: none;
+    background: #FFFDFD;
+    border-radius:20px;
+    animation: pop 0.60s ease-in-out;
+    transition: transform 0.5s;
+    box-shadow: 0 0 0 10px #FF9D03A1;
+}
+@keyframes pop{
+  0%  {
+      opacity: 0;
+    transform: scale(0.8);
+    }
+    100%  {
+      opacity: 6;
+    transform: scale(1);
+  }
+
+}
+
+#option.hide {
+  transform: scale(0);
+}
+
+
+#option img{
+    position: relative;
+    left:-140px ;
+    top:-10px;
+}
+
+
+.settings-img{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left:8px;
+    bottom: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #B5B5B5;
+
+}
+
+
+
+
+
+
+.window{
+    background: #FF9D03;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+    text-align: center;
+    display: flex;
+    justify-items: center 
+}
+
+.window span{
+    color:#FFFEFC;
+    position: relative;
+    top:300px;
+    left: 100px;
+    animation: scale 2s ease-in 0.3s ;
+    transition: 0.5s;
+    transform: scale(1);
+    ;
+    font-size: 20px;
+}
+
+.window span:nth-child(1) {
+  animation-delay: 3s;
+}
+
+.window span:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.window span:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.window span:nth-child(4) {
+  animation-delay: 0.10s;
+}
+
+.window span:nth-child(5) {
+  animation-delay: 0.15s;
+}
+
+.window span:nth-child(6) {
+  animation-delay: 1s;
+}
+
+.window span:nth-child(7) {
+  animation-delay: 1.2s;
+}
+
+@keyframes scale{
+  20% {
+    transform: scale(0.2);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.7);
+    opacity: 1;
+  }
+}
+
+
+ .window p{
+    color:#FFFEFC;
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+}
+
+.banner img{
+    position: relative;
+    float: right;
+    right:10px;
+}
+
+
+a i{
+    position: absolute;
+    left: 30px;
+}
+
+
+@media (min-width: 500px) {
+    #option{
+        display: none;
+        position: relative;
+        top:0px;
+        left:0px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #option img{
+    position: absolute;
+    left:20px ;
+    top:10px;
+}
+
+#add-task-btn {
+    position: relative;
+    left: 178px !important;
+    width: 100px;
+    }
+
+
+.window span{
+    position: relative;
+    top:800px!important;
+    left: 340px!important;
+    font-size: 55px!important;
+    }
+    
+     .window p{
+    color:#FFFEFC;
+    position: absolute;
+    bottom: 0;
+    left: 200px!important;
+    font-size: 45px;
+}
+
+}
