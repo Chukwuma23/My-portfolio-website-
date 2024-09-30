@@ -82,8 +82,6 @@ function addTask() {
         tasks.push(task);
         displayTasks();
         taskInput.value = '';
-document.getElementById('settings-modal').style.display = 'block'
-        alert('Add due date and time to complete Task⚠️')
           saveTasks();
     }
 }
