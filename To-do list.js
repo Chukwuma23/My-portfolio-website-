@@ -281,35 +281,44 @@ const alarmSounds = [
 
 
 
-//WINDOW DISPLAY. 
-const windowElement = document.querySelector('.window');
-
-windowElement.addEventListener('animationend', () => {
-  windowElement.classList.add('hide');
-  setTimeout(() => {
-    windowElement.style.display = 'none';
-    alert('Welcome to my to-do list app.☺️ Note: please note this app is not fully functional yet.\n I will be adding more features to suite your needs through your suggestions so feel free to message for any information.\n Your suggestions are needed, thanks for viewing.' )
-
-  }, 400);
-}, { once: true });
-
-const spans = document.querySelectorAll('.window span');
-
-spans.forEach((span, index) => {
-  span.style.animationDelay = `${index * 0.5}s`;
-});
-
-
-
-
-  document.getElementById('portfolio-link').addEventListener('click', (e) => {
+ document.getElementById('portfolio-link').addEventListener('click', (e) => {
     if (!confirm('You are about to be redirected to my  portfolio website to send a message.\n fill in the form at the bottom of the website and click the  send button, your message will be delivered to me, your suggestions and requests will be granted.\n click okay to visit website.\n click cancel to stay.')) {
       e.preventDefault();
     }
   });
 
-  
-  
+
+
+  //WINDOW DISPLAY. 
+  let pageLoaded = false;
+
+saveSettingsBtn.addEventListener('click', () => {
+  saveTaskSettings();
+  pageLoaded = true;
+});
+
+const windowElement = document.querySelector('.window');
+
+windowElement.addEventListener('animationend', () => {
+  if (!pageLoaded) {
+    windowElement.classList.add('hide');
+    setTimeout(() => {
+      windowElement.style.display = 'none';
+      localStorage.setItem('introShown', 'true');
+      alert('Welcome to my to-do list app. Note: please note this app is not fully functional yet.\n I will be adding more features to suite your needs through your suggestions so feel free to message for any information.\n Your suggestions are needed, thanks for viewing.');
+    }, 400);
+  }
+}, { once: true });
+
+const spans = document.querySelectorAll('.window span');
+spans.forEach((span, index) => {
+  span.style.animationDelay = `${index * 0.3}s`;
+});
+
+// Check if intro has already been shown
+if (localStorage.getItem('introShown') === 'true') {
+  windowElement.style.display = 'none';
+}
 
 
 
