@@ -250,7 +250,9 @@ body {
       
 </div>
   <!-- Project -->
-  
+  if ('Notification' in window) { 
+  Notification.requestPermission(); 
+}
   <script src="To-do list.js"></script>
 </body>
 </html>
