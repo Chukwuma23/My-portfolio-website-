@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.scrollTop = 0;
   });
   var typed = new Typed(".typing", {
-    strings: ["front-end Web Developer", "web designer", "Freelancer"],
+    strings: ["Front-end and back-end Web Developer", "Web designer", "Freelancer"],
     typeSpeed: 100,
     backSpeed: 60,
     loop: true

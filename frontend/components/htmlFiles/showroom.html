@@ -6,90 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>my showroom</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <link rel="stylesheet" href="/frontend\components\styles\showroom.css">
+    <link rel="stylesheet" href="/frontend/components/styles/showroom.css">
       <!-- Using Tailwind CSS via CDN for development -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <style>
-@media(min-width: 500px){
-    .search{
-        left: 300px;
-        }
-    
-        .banner img{
-        left: 160px;
-        }
-    
-    
-            .blog{
-        position: relative;
-        top: 260px;
-        left: 150px;
-        
-        
-        }
-        footer {
-         width:100%;
-        }
-        .todo{
-        position: relative;
-        top: 0px;
-        left: 30px;
-        }
-            .blog{
-        position: relative;
-        top: -440px;
-        margin-left: 190px;
-        }
-        
-        .Unit-coverter{
-         position: relative;
-        top:-1130px;
-        margin-left: 590px;
-        }
-        
-        .typing{
-        font-size: 30px;
-        color:#191919;
-        
-    }
-    
-}
 
 
 </style>
 <body>
-    <div class="banner"><h3>My ShowRoom
-    <input class="search" type="search"><img src="./zoom-in.png" alt="search" width="20" height="20" value ="search"></h3>
+   <div class="banner flex items-center justify-between bg-yellow-500 w-full p-2">
+        <h3 class="text-white text-lg ml-5">My Projects</h3>
+        <div class="search flex items-center justify-between bg-white rounded-full p-1 ">
+    <input className="bg-transparent outline-none px-2 w-full" type="text" placeholder="Search">
+    <svg className="relative top-0 left-2" xmlns="http://www.w3.org/2000/svg"
+   width="20"
+    height="20"
+     viewBox="0 0 24 24"
+     stroke="gray">
+    <path
+     d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91
+      16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99
+       5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+    />
+  </svg>
+    </div>
 </div>
- <button class="skip-btn">Skip</button>
- 
-<div class="h-full w-full flex flex-col bg-blue-700 items-center justify-between">
- <div class="row">
- <div class="col-md-6 typing-container">
-  <div class="text"><span class="typing"></span>
- 
+    <div class="container min-h-screen w-full flex flex-col items-center">
 
- 
-    
-      <div class="col-6">
-        <a href="./To do list.html">  
-<img class="todo" src="./51KFJNwielS._AC_UF1000,1000_QL80_.jpg" alt="" width="240" height="290">
-    
+ <div class="typing-container text-center mt-20">
+  <div class="text"><span class="typing text-base font-10"></span>
+  </div>
 </div>
- 
-       <div class="col-6">
-        <a href="#">
-  <img class="blog" src="./images.png" alt="" width="240" height="290" onclick="alert('Project not available at the moment check again later.\n Thank you.')">
+
+
+
+      <div id="image-container" class="w-full flex-col gap-10 items-center justify-center
+       mt-10 mb-10 md:flex-row flex-wrap hidden">
+
+       <div class="w-3/4 md:w-2/5 lg:w-1/4 shadow-lg p-8 flex 0.4s ease-in-out rounded-lg
+         duration-300 transform hover:scale-105 hover:shadow-yellow-500 
+          items-center justify-center flex flex-col ">
+<img class="w-3/4 md:w-2/2 lg:2/2  rounded-lg" src="/frontend/images/chusk-blog.jpg.jpg" alt="" >
+  <a
+   class="p-2 bg-yellow-500 text-white rounded-lg mt-4"
+          href="https://chuksblogapp.netlify.app/"> View Project
  </a>
- </div>
+  </div>
+
+  
+       <div class="w-3/4 md:w-2/5 lg:w-1/4 shadow-lg p-8 flex 0.4s ease-in-out rounded-lg
+         duration-300 transform hover:scale-105 hover:shadow-yellow-500 
+          items-center justify-center flex flex-col ">
+<img class="w-3/4 md:w-2/2 lg:2/2  rounded-lg" src="/frontend/images/chusk-blog.jpg.jpg" alt="" >
+  <a
+   class="p-2 bg-yellow-500 text-white rounded-lg mt-4"
+          href="./my showroom /htmlFiles/portfolio.html"> View Project
+ </a>
+  </div>
+       
+   <div class="w-3/4 md:w-2/5  lg:w-1/4 shadow-lg p-8 flex 0.4s ease-in-out rounded-lg
+         duration-300 transform hover:scale-105 hover:shadow-yellow-500 
+          items-center justify-center flex flex-col ">
+       
+  <img class="w-3/4 md:w-2/2 rounded-lg" src="/frontend/images/word game.jpg" alt="">
+    <a onclick="alert('Project not available at the moment check again later.\n Thank you.')"
+     class="p-2 bg-yellow-500 text-white rounded-lg mt-4" href="#"> View Project
+ </a>
+      </div>
+
+       <div class="w-3/4 md:w-2/5  lg:w-1/4 shadow-lg p-8 flex 0.4s ease-in-out rounded-lg
+         duration-300 transform hover:scale-105 hover:shadow-yellow-500 
+          items-center justify-center flex flex-col ">
+       
+  <img class="w-3/4 md:w-2/2 rounded-lg" src="/frontend/images/word game.jpg" alt="">
+    <a  onclick="alert('Project not available at the moment check again later.\n Thank you.')"
+     class="p-2 bg-yellow-500 text-white rounded-lg mt-4" href="#"> View Project
+ </a>
+      </div>
+
+     </div>
  
-       <div class="col-6">
-    <a href="#">
-  <img class="Unit-coverter" src="./images (2).png" alt="" width="240" height="290"
-     onclick="alert('Project not available at the moment check again later.\n Thank you.')">
-         </a>
- </div>
  
        <!--div class="col-6">
         <a href="">
@@ -97,20 +94,17 @@
  </a>
 </div-->
 
-      </div>
-    </div>
-   </div>
-    <footer class="footer mt-auto py-3">
+ <button id="skip-btn" class="skip-btn p-4 bg-yellow-500 text-white 
+        rounded-2xl fixed top-40 right-5">Skip</button>
+    
+   
+  
+</div>
+ <footer class="footer mt-auto py-3  bg-black w-full text-center text-white text-sm">
         <span>Copyright © <script>
                 document.write(new Date().getFullYear());
-            </script> All rights reserved By <i class="fa fa-heart"></i> <a href="https://m.facebook.com/dark.r34">CHUKWUMA</a></p>
+            </script> All rights reserved By <i class="fa fa-heart"></i> <a class="text-yellow-500" href="https://m.facebook.com/dark.r34">CHUKWUMA KALU</a></p>
     </footer>
-  </div>
-
-
-
-
-   
 
  <script src="/frontend\components\scirpts\showroom.js"></script>
 </body>

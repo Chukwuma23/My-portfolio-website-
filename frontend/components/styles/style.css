@@ -452,27 +452,27 @@ section .title::after {
 }
 
 .skills-content .right .js::before {
-  width: 70%;
+  width: 80%;
   border-radius: 20px;
 }
 
-.skills-content .right .php::before {
+.skills-content .right .react::before {
   width: 60%;
   border-radius: 20px;
 }
 
 .skills-content .right .mysql::before {
-  width: 50%;
+  width: 70%;
   border-radius: 20px;
 }
 
 .skills-content .right .python::before {
-  width: 40%;
+  width: 50%;
   border-radius: 20px;
 }
 
-.skills-content .right .java::before {
-  width: 20%;
+.skills-content .right .Tailwind::before {
+  width: 80%;
   border-radius: 20px;
 }
 
