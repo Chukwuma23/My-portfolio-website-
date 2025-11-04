@@ -1,4 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
+ // typing text animation script
+  /*var typed = new 
+  Typed(document.querySelector(".typing"), {
+       strings: ["<b>welcome to my ShowRoom.</b><br>Here you are going to<br> explore most of my projects<br> both old and new projects.<br>my projects here are to showcase,<br> and highlight projects i have been working on.<br> keep in mind that all projects here<br> are owned by me <br>and it was built from scratch.","I will be updating<br> them as i progress.", "keep exploring! ☺️","Click on the <b>images to view projects.👇🏽"],
+      
+    typeSpeed: 0,
+    backSpeed: 0.5,
+    loop: false, 
+    onComplete: function(){
+        document.querySelector('.todo ').style.display = 'block';
+        document.querySelector('.blog ').style.display = 'block';
+    }
+  });*/
+  
+  
+  
+  
+  
+ /* const documentContainer = document.getElementById('image-container');
+  const skipButton = document.getElementById('skip-btn');
+
+var typed = new Typed(document.querySelector(".typing"), {
+  strings: [
+    `<b>Welcome to my ShowRoom.</b><br>Here you are going to<br> explore my projects<br> both old and new projects.
+    <br>my purpose here is to showcase,<br> and highlight projects i have been working on.<br>
+     keep in mind that all projects here<br> are owned by me <br>and it was built from scratch.",
+    "I will be updating<br> them as i progress.`,
+    "keep exploring! ☺️",
+    "Click on the <b>images to view projects.👇🏽"
+  ],
+  typeSpeed: 10,
+  backSpeed: 0.5,
+  loop: false,
+  onComplete: function() {
+    documentContainer.style.display = 'flex'; // Show the image container
+    skipButton.style.display = 'none';//remove skip btn
+    // document.querySelectorAll('a')[0].style.display ='block';
+  }
+});
+
+// Add event listener to skip button
+document.querySelector('.skip-btn').addEventListener('click', function() {
+  typed.stop(); // stop the animation
+  typed.cursor.remove(); // remove cursor
+  document.querySelector('.typing').textContent = typed.strings[typed.strings.length -5]; // show last string
+  document.querySelector('.skip-btn ').style.display = 'none';//remove skip btn
+  documentContainer.style.display = 'flex'; // Show the image container});
+});
+*/
+
+ document.addEventListener('DOMContentLoaded', function() {
             // Project gallery data
             const projectGalleries = {
              'blog': {
@@ -34,21 +84,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ]
         },
-                'Payment Tracker': {
-                    title: 'Payment Tracker Gallery',
+                'Marinetime Union Website': {
+                    title: 'Marinetime Union Website Gallery',
                     images: [
                         {
-                            src: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Payment Tracker Homepage'
+                            src: '/frontend/images/paymentImages/Untitled - Personal - Microsoft​ Edge 11_1_2025 8_33_17 PM.png',
+                            caption: 'Homepage'
                         },
                         {
-                            src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Projects Section'
+                            src: '/frontend/images/paymentImages/About.png',
+                            caption: 'About Section'
                         },
                         {
-                            src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Contact Section'
+                            src: '/frontend/images/paymentImages/membersdashboard.jpg',
+                            caption: 'Members Dashboard'
+                        },
+                         {
+                            src: '/frontend/images/paymentImages/loginpage.png',
+                            caption: 'Members Dashboard'
                         }
+                       
                     ]
                 },
                 'word-game': {
