@@ -118,21 +118,38 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
                        
                     ]
                 },
-                'word-game': {
-                    title: 'Word Game Gallery',
+                'chatbot': {
+                    title: 'mr proper AI Chatbot Gallery',
                     images: [
                         {
-                            src: 'https://images.unsplash.com/photo-1553484771-8e94869b4c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Game Start Screen'
+                            src: '/frontend/images/chatbot Image/Gemini_Generated_Image_surx8fsurx8fsurx.png',
+                            caption: 'chatbot mobile view'
                         },
                         {
-                            src: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Gameplay Interface'
+                            src: '/frontend/images/chatbot Image/knowlegebase management.png',
+                            caption: 'Knowledgebase Management'
                         },
                         {
-                            src: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-                            caption: 'Leaderboard'
+                            src: '/frontend/images/chatbot Image/Gemini_Generated_Image_y1nsn4y1nsn4y1ns.png',
+                            caption: 'adding new knowledge'
+                        },
+                           {
+                            src: '/frontend/images/chatbot Image/destop login.png',
+                            caption: ' Desktop Login Page'
+                        },
+                         {
+                            src: '/frontend/images/chatbot Image/Edit knowlegebase.png',
+                            caption: 'Edit Knowledgebase'
+                        },
+                         {
+                            src: '/frontend/images/chatbot Image/Gemini_Generated_Image_yuqzvyuqzvyuqzvy.png',
+                            caption: 'chatbot desktop view'
+                        },
+                         {
+                            src: '/frontend/images/chatbot Image/Gemini_Generated_Image_9eu7ok9eu7ok9eu7.png',
+                            caption: 'mobile login page and signup page'
                         }
+
                     ]
                 },
                 'ecommerce': {

@@ -281,6 +281,12 @@ html, body {
             border: 2px solid transparent;
         }
 
+        .slide img{
+            width: 100%!important;
+            height: 90%!important;
+            background-color: red;
+        }
+
         .thumbnail:hover {
             opacity: 0.9;
             transform: scale(1.05);
