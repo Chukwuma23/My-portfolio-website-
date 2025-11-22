@@ -58,12 +58,16 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
             src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_25_43 PM.png',
             caption: 'Blog Post Page'
         },
+         {
+            src: '/frontend/images/blogImages/blog pages.png',
+            caption: 'Post Page'
+        },
         {
             src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 10_50_29 AM.png',
             caption: 'Single Post Page'
         },
         {
-            src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 1_48_28 PM.png',
+            src: '/frontend/images/blogImages/bloghomepage.png',
             caption: 'Postlist Page'
         },
         {
@@ -88,20 +92,28 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
                     title: 'Marinetime Union Website Gallery',
                     images: [
                         {
-                            src: '/frontend/images/paymentImages/Untitled - Personal - Microsoft​ Edge 11_1_2025 8_33_17 PM.png',
+                            src: '/frontend/images/paymentImages/pagemainmenu.png',
                             caption: 'Homepage'
                         },
                         {
-                            src: '/frontend/images/paymentImages/About.png',
+                            src: '/frontend/images/paymentImages/about page.png',
                             caption: 'About Section'
                         },
                         {
-                            src: '/frontend/images/paymentImages/membersdashboard.jpg',
+                            src: '/frontend/images/paymentImages/members poters.png',
                             caption: 'Members Dashboard'
                         },
                          {
-                            src: '/frontend/images/paymentImages/loginpage.png',
-                            caption: 'Members Dashboard'
+                            src: '/frontend/images/paymentImages/news management porter.png',
+                            caption: 'News Dashboard'
+                        },
+                         {
+                            src: '/frontend/images/paymentImages/admin dashboard.png',
+                            caption: 'Admin Dashboard'
+                        },
+                         {
+                            src: '/frontend/images/paymentImages/news management.png',
+                            caption: 'news management Dashboard'
                         }
                        
                     ]
