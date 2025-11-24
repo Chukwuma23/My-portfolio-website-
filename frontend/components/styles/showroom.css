@@ -284,7 +284,6 @@ html, body {
         .slide img{
             width: 100%!important;
             height: 90%!important;
-            background-color: red;
         }
 
         .thumbnail:hover {

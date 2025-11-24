@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // typing text animation script
   var typed = new Typed(".typing", {
-    strings: ["Front-end Web Developer", "Back-end web developer", "web designer", "Freelancer", 'UI/UX designer', "App developer"],
-    typeSpeed: 100,
-    backSpeed: 60,
+    strings: ["Fullstack Web Developer", "web designer", "Freelancer", 'UI/UX designer'],
+    typeSpeed: 80,
+    backSpeed: 20,
     loop: true
   });
 
@@ -53,3 +53,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // owl carousel script (note: owl carousel requires jQuery, so you'll need to find a vanilla JS alternative)
 });
+
+
+
+        const form = document.getElementById('contactForm');
+        const alertDiv = document.getElementById('alert');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showAlert(message, type) {
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                form.classList.add('loading');
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send message';
+                form.classList.remove('loading');
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+
+            setLoading(true);
+
+            try {
+                const response = await fetch('http://localhost:5000/api/contact/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    form.reset();
+                } else {
+                    const errorMessage = result.errors ? result.errors.join(', ') : result.message;
+                    showAlert(errorMessage, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Network error. Please check your connection and try again.', 'error');
+            } finally {
+                setLoading(false);
+            }
+        });
+  
