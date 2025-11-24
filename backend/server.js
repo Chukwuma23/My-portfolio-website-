@@ -12,6 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.set('trust proxy', 1); // Trust first proxy
 
+app.set('trust proxy', 1); // Trust first proxy
+
 // Enhanced CORS configuration
 const allowedOrigins = [
   'http://localhost:3000',
