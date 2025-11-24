@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setLoading(true);
 
             try {
-                const response = await fetch('http://localhost:5000/api/contact/submit', {
+                const response = await fetch('https://my-portfolio-message-api-naci.onrender.com/api/contact/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
