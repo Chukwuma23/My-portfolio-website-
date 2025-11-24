@@ -19,7 +19,7 @@ const allowedOrigins = [
   'http://127.0.0.1:5500',
   'http://localhost:8080',
   'http://127.0.0.1:8080',
-  'https://my-portfolio-message-api-naci.onrender.com'
+  'https://chukwumakaluwebsiteportfolio.netlify.app/'
 ];
 
 app.use(cors({
