@@ -4,30 +4,72 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const createTransporter = () => {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // Use TLS
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
+  // Use different configuration for production (Render)
+  if (process.env.NODE_ENV === 'production') {
+    return nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      // Render-specific settings
+      tls: {
+        rejectUnauthorized: false,
+        ciphers: 'SSLv3'
+      },
+      connectionTimeout: 30000, // 30 seconds for cloud
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
+      // Retry configuration
+      retries: 3,
+      retryDelay: 1000
+    });
+  } else {
+    // Development configuration
+    return nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      }
+    });
+  }
 };
 
-// Rest of your email functions remain the same...
-export const sendContactNotification = async (contactData) => {
+// Test connection with better error handling
+export const testTransporter = async () => {
   try {
     const transporter = createTransporter();
+    await transporter.verify();
+    console.log('✅ Email transporter is ready');
+    return true;
+  } catch (error) {
+    console.error('❌ Email transporter failed:', error.message);
+    return false;
+  }
+};
+
+export const sendContactNotification = async (contactData) => {
+  try {
+    console.log('🔧 Attempting to send email on:', process.env.NODE_ENV);
     
+    const transporter = createTransporter();
+    
+    // Test connection with timeout
+    const connectionPromise = transporter.verify();
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Connection timeout')), 15000)
+    );
+    
+    await Promise.race([connectionPromise, timeoutPromise]);
+    console.log('✅ Email connection verified');
+
     const mailOptions = {
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.NOTIFICATION_EMAIL,
-      replyTo: contactData.email, // So you can reply directly to the sender
+      replyTo: contactData.email,
       subject: `New Contact: ${contactData.subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -58,8 +100,11 @@ export const sendContactNotification = async (contactData) => {
 
 export const sendAutoReply = async (userEmail, userName) => {
   try {
+    console.log('🔧 Attempting to send auto-reply on:', process.env.NODE_ENV);
+    
     const transporter = createTransporter();
     
+    // Skip connection test for auto-reply to avoid double timeouts
     const mailOptions = {
       from: `"Chukwuma" <${process.env.EMAIL_USER}>`,
       to: userEmail,
@@ -71,18 +116,15 @@ export const sendAutoReply = async (userEmail, userName) => {
           <p>Thank you for getting in touch with me through my portfolio website. I have received your message and will review it shortly.</p>
           <p>I typically respond within 24-48 hours.</p>
           <p>Best regards,<br><strong>Chukwuma</strong></p>
-          <hr style="margin: 20px 0;">
-          <p style="font-size: 12px; color: #666;">
-            This is an automated response. Please do not reply to this email.
-          </p>
         </div>
       `,
     };
 
+    // Send without verification for auto-reply
     await transporter.sendMail(mailOptions);
     console.log('✅ Auto-reply email sent to user');
   } catch (error) {
     console.error('❌ Failed to send auto-reply email:', error.message);
+    // Don't throw for auto-reply failures
   }
 };
-

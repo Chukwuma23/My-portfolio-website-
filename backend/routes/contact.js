@@ -5,47 +5,9 @@ import { sendContactNotification, sendAutoReply } from '../emailService.js';
 
 const router = express.Router();
 
+
 // Submit contact form
 /*router.post('/submit', validateContactForm, async (req, res) => {
-  try {
-    const { name, email, subject, message } = req.body;
-    
-    // Get client IP address
-    const ipAddress = req.ip || req.connection.remoteAddress;
-
-    // Create new contact entry
-    const newContact = new Contact({
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      subject: subject.trim(),
-      message: message.trim(),
-      ipAddress
-    });
-
-    await newContact.save();
-
-    res.status(201).json({
-      success: true,
-      message: 'Thank you for your message! We will get back to you soon.',
-      data: {
-        id: newContact._id,
-        name: newContact.name,
-        email: newContact.email
-      }
-    });
-
-  } catch (error) {
-    console.error('Contact form submission error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error. Please try again later.'
-    });
-  }
-});*/
-
-
-// Submit contact form
-router.post('/submit', validateContactForm, async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
     
@@ -96,9 +58,81 @@ router.post('/submit', validateContactForm, async (req, res) => {
       message: 'Internal server error. Please try again later.'
     });
   }
+});*/
+
+// Submit contact form
+router.post('/submit', validateContactForm, async (req, res) => {
+  try {
+    const { name, email, subject, message } = req.body;
+    
+    // Get client IP address
+    const ipAddress = req.ip || req.connection.remoteAddress;
+
+    // Create new contact entry
+    const newContact = new Contact({
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      subject: subject.trim(),
+      message: message.trim(),
+      ipAddress
+    });
+
+    await newContact.save();
+
+    // Send emails with better error handling for production
+    if (process.env.NODE_ENV === 'production') {
+      // On Render, don't wait for emails - send them in background
+      Promise.all([
+        sendContactNotification({
+          name: newContact.name,
+          email: newContact.email,
+          subject: newContact.subject,
+          message: newContact.message,
+          ipAddress: newContact.ipAddress
+        }).catch(error => {
+          console.error('Background email notification failed:', error.message);
+        }),
+        sendAutoReply(newContact.email, newContact.name).catch(error => {
+          console.error('Background auto-reply failed:', error.message);
+        })
+      ]).then(() => {
+        console.log('✅ Background email processes completed');
+      });
+    } else {
+      // In development, wait for emails
+      await sendContactNotification({
+        name: newContact.name,
+        email: newContact.email,
+        subject: newContact.subject,
+        message: newContact.message,
+        ipAddress: newContact.ipAddress
+      });
+      
+      await sendAutoReply(newContact.email, newContact.name);
+    }
+
+    res.status(201).json({
+      success: true,
+      message: 'Thank you for your message! We will get back to you soon.',
+      data: {
+        id: newContact._id,
+        name: newContact.name,
+        email: newContact.email
+      }
+    });
+
+  } catch (error) {
+    console.error('Contact form submission error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error. Please try again later.'
+    });
+  }
 });
 
-// ... rest of your existing routes remain the same
+
+
+
 // Get all contacts (for admin panel - optional)
 router.get('/', async (req, res) => {
   try {
