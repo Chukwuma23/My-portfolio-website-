@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/*
 // Contact form handling - IMPROVED VERSION
 // Smart URL detection for development/production
 function getBaseURL() {
@@ -152,6 +153,156 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Network error:', error);
         showAlert('Network error. Please check your connection and try again.', 'error');
+    } finally {
+        setLoading(false);
+    }
+});
+
+
+
+
+*/
+
+
+// Smart URL detection with encoding
+function getBaseURL() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:5000';
+    }
+    return 'https://my-portfolio-message-api-naci.onrender.com';
+}
+
+const baseURL = getBaseURL();
+
+// EmailJS Configuration - For BOTH notifications and auto-replies
+emailjs.init("jxxiFr1P60U9SAZ2u"); // ← Your EmailJS public key
+
+const form = document.getElementById('contactForm');
+const alertDiv = document.getElementById('alert');
+const submitBtn = document.getElementById('submitBtn');
+
+function showAlert(message, type) {
+    alertDiv.textContent = message;
+    alertDiv.className = `alert ${type}`;
+    alertDiv.style.display = 'block';
+    
+    setTimeout(() => {
+        alertDiv.style.display = 'none';
+    }, 5000);
+}
+
+function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.textContent = isLoading ? 'Sending...' : 'Send message';
+    submitBtn.style.opacity = isLoading ? '0.7' : '1';
+}
+
+// Function to send notification to YOU
+async function sendNotificationToMe(data) {
+    try {
+        await emailjs.send("service_hlpsyy3", "template_jhx7s7l", {
+            from_name: data.name,
+            from_email: data.email,
+            subject: data.subject,
+            message: data.message,
+            to_email: "chukstechservice23@gmail.com",
+            reply_to: data.email,
+            date: new Date().toLocaleString(),
+            ip_address: "From Portfolio Website"
+        });
+        console.log('✅ Notification sent to you via EmailJS');
+        return true;
+    } catch (error) {
+        console.error('❌ Notification failed:', error);
+        return false;
+    }
+}
+
+// Function to send auto-reply to VISITOR
+async function sendAutoReply(userEmail, userName, userSubject, userMessage) {
+    try {
+        await emailjs.send("service_hlpsyy3", "template_409gm3g", {
+            to_email: userEmail,
+            to_name: userName,
+            user_subject: userSubject,
+            user_message: userMessage,
+            reply_to: "chukstechservice23@gmail.com",
+            date: new Date().toLocaleString()
+        });
+        console.log('✅ Auto-reply sent to:', userEmail);
+        return true;
+    } catch (error) {
+        console.error('❌ Auto-reply failed:', error);
+        return false;
+    }
+}
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = {
+        name: formData.get('name')?.trim() || '',
+        email: formData.get('email')?.trim() || '',
+        subject: formData.get('subject')?.trim() || '',
+        message: formData.get('message')?.trim() || ''
+    };
+
+    // Validation
+    if (data.name.length < 2) {
+        showAlert('Name must be at least 2 characters long', 'error');
+        return;
+    }
+    if (data.subject.length < 5) {
+        showAlert('Subject must be at least 5 characters long', 'error');
+        return;
+    }
+    if (data.message.length < 10) {
+        showAlert('Message must be at least 10 characters long', 'error');
+        return;
+    }
+
+    setLoading(true);
+
+    try {
+        // Send BOTH emails simultaneously using EmailJS
+        const [notificationResult, autoReplyResult] = await Promise.allSettled([
+            sendNotificationToMe(data),
+            sendAutoReply(data.email, data.name, data.subject, data.message)
+        ]);
+
+        console.log('EmailJS results:', {
+            notification: notificationResult.status === 'fulfilled' ? notificationResult.value : false,
+            autoReply: autoReplyResult.status === 'fulfilled' ? autoReplyResult.value : false
+        });
+
+        // Save to database
+        const dbResponse = await fetch(`${baseURL}/api/contact/submit`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (dbResponse.ok) {
+            console.log('✅ Database save successful');
+            
+            // Show appropriate success message
+            if (autoReplyResult.status === 'fulfilled' && autoReplyResult.value) {
+                showAlert('Thank you for your message! A confirmation has been sent to your email.', 'success');
+            } else {
+                showAlert('Thank you for your message! I will get back to you soon.', 'success');
+            }
+            form.reset();
+        } else {
+            throw new Error('Database save failed');
+        }
+        
+    } catch (error) {
+        console.error('Form submission error:', error);
+        showAlert('Failed to send message. Please try again or contact me directly.', 'error');
     } finally {
         setLoading(false);
     }
