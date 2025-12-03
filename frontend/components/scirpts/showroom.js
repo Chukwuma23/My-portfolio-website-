@@ -168,7 +168,33 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
                             caption: 'Shopping Cart'
                         }
                     ]
-                }
+                },
+                 'Word puzzy': {
+                    title: 'Word Puzzy Game Gallery',
+                    images: [
+                        {
+                            src: '/frontend/images/word puzzy/a developer portfoli.png',
+                            caption: 'Light and dark theme'
+                        },
+                        {
+                            src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 4_00_13 PM.png',
+                            caption: 'Igbo Language Section'
+                        },
+                        {
+                            src: '/frontend/images/word puzzy/level selection.png',
+                            caption: 'Level Selection Page'
+                        },
+                           {
+                            src: '/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_40_16 PM.png',
+                            caption: 'Refill heart page'
+                        },
+                         {
+                            src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 5_20_46 PM.png',
+                            caption: 'Game Play Page'
+                        }
+
+                    ]
+                },
             };
 
             // DOM elements
@@ -347,4 +373,113 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
             // Initialize the application
             initEventListeners();
         });
-  
+
+// E-commerce App button event listener
+        document.getElementById('btn').addEventListener('click',function(){
+             showCustomAlertWithCallback(
+        'This project is currently not available!', 'Not available');
+        });
+
+        // E-commerce App button event listener
+ document.getElementById('btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCustomAlertWithCallback(
+        `This project is currently not available!`,
+        function(confirmed) {
+            if (confirmed) {
+                // Get the URL from data attribute
+                return;
+                const gameUrl = this.getAttribute('data-href');
+                window.open(gameUrl, '_blank');
+            }
+        }.bind(this),
+        {
+            title: 'E-commerce App',
+            buttonText: 'Ok'
+        }
+    );
+});
+
+        
+// Word Puzzy Game button event listener
+      document.getElementById('word-puzzy-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    showCustomAlertWithCallback(
+        `Word Puzzle Game - A bilingual educational game with Igbo and English languages. complete with levels, scoring, 
+        and heart system to enhance learning experience.`,
+        function(confirmed) {
+            if (confirmed) {
+                // Get the URL from data attribute
+                const gameUrl = this.getAttribute('data-href');
+                window.open(gameUrl, '_blank');
+            }
+        }.bind(this),
+        {
+            title: 'Launch Game',
+            buttonText: 'Play Now'
+        }
+    );
+});
+
+// mr proper AI Chatbot button event listener
+ document.getElementById('chatbot-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCustomAlertWithCallback(
+        `Mr Proper Nigeria limited AI Chatbot - An intelligent chatbot designed to assist users with inquiries, provide information,
+         and enhance user experience through natural language processing. \n Note: This Project is still under development.`,
+        function(confirmed) {
+            if (confirmed) {
+                // Get the URL from data attribute
+                const gameUrl = this.getAttribute('data-href');
+                window.open(gameUrl, '_blank');
+            }
+        }.bind(this),
+        {
+            title: 'Mr Proper AI Chatbot',
+            buttonText: 'Visit Now'
+        }
+    );
+});
+
+// Marinetime Union Website button event listener
+ document.getElementById('Union-Website-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCustomAlertWithCallback(
+        `Marinetime Union Website - A comprehensive platform for maritime workers to access resources, manage memberships, 
+    \n news, and stay connected within the maritime community.`,
+        function(confirmed) {
+            if (confirmed) {
+                // Get the URL from data attribute
+                const gameUrl = this.getAttribute('data-href');
+                window.open(gameUrl, '_blank');
+            }
+        }.bind(this),
+        {
+            title: 'Marinetime Union Website',
+            buttonText: 'Visit Now'
+        }
+    );
+});
+
+
+// Marinetime Union Website button event listener
+ document.getElementById('blog-Website-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCustomAlertWithCallback(
+        `Blog Website - A dynamic blogging platform that allows users to create, share, and engage with content across various topics. 
+        \n Features include user authentication, post creation, commenting, and responsive design.`,
+        function(confirmed) {
+            if (confirmed) {
+                // Get the URL from data attribute
+                const gameUrl = this.getAttribute('data-href');
+                window.open(gameUrl, '_blank');
+            }
+        }.bind(this),
+        {
+            title: 'Blog Website',
+            buttonText: 'Visit Now'
+        }
+    );
+});
+

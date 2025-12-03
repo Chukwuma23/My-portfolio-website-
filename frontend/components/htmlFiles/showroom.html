@@ -14,33 +14,36 @@
    
 </head>
 <body>
-       <header class="banner flex items-center justify-between bg-yellow-500 w-full p-2 absolute top-0 left-0">
-        <h3 class="text-white text-sm ml-5">Project Gallery</h3>
-        <div class="search flex items-center justify-between bg-white rounded-lg p-2 w-3/6">
-    <input class="px-2 w-4/6 text-black text-base" type="text" placeholder="Search">
-    <svg class="mr-1" xmlns="http://www.w3.org/2000/svg"
-   width="20"
-    height="20"
-     viewBox="0 0 24 24"
-     stroke="gray">
-    <path
-     d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91
-      16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99
-       5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-    />
-  </svg>
+      <!-- Update the search section slightly -->
+<header class="banner flex items-center justify-between bg-yellow-500
+ w-full p-2 absolute top-0 left-0 gap-4 md:flex-row md:px-10">
+    <h3 class="text-white text-lg ml-5">Project Gallery</h3>
+    <div class="flex flex-col items-center justify-center w-full">
+    <div class="search flex items-center justify-between bg-white rounded-lg p-2 w-3/6 relative">
+        <input class="px-2 w-4/6 text-black text-base border-none outline-none" 
+               type="text" 
+               placeholder="Search projects...">
+        <svg class="mr-1 cursor-pointer" 
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             viewBox="0 0 24 24"
+             stroke="gray">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+    </div>
     </div>
 </header>
- <div class="container mt-20 mb-40 w-5/6 md:w-full">
+ <div class="container mt-40 mb-40 w-5/6 md:w-full">
         <div id="image-container">
             <!-- Project 1 -->
             <div class="project-card">
                 <h2>Blog Website</h2>
                 <img src="/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_20_51 PM.png" alt="Blog Website">
                 <div class="card-footer">
-                    <a class="btn" href="https://chuksblogapp.netlify.app/">
+                     <button class="btn" id="blog-Website-btn" data-href="https://chuksblogapp.netlify.app/">  
                         <i class="fas fa-eye"></i> View Project
-                    </a>
+                    </button>
                     <button class="gallery-btn" data-project="blog">
                         <i class="fas fa-images"></i>
                     </button>
@@ -52,9 +55,9 @@
                 <h2>Marinetime Union Website</h2>
                 <img src="/frontend/images/paymentImages/mainmenu.png" alt="Marinetime Union Website">
                 <div class="card-footer">
-                    <a class="btn" href="https://marinetimeworkerslumberjack.netlify.app/">
+                    <button class="btn" id="Union-Website-btn" data-href="https://marinetimeworkerslumberjack.netlify.app/">  
                         <i class="fas fa-eye"></i> View Project
-                    </a>
+                    </button>
                     <button class="gallery-btn" data-project="Marinetime Union Website">
                         <i class="fas fa-images"></i>
                     </button>
@@ -66,10 +69,9 @@
                 <h2>AI Chatbot</h2>
                 <img src="/frontend/images/chatbot Image/chatbot menu.png" alt="chatbot">
                 <div class="card-footer">
-                     <a class="btn" href="https://mrpropertychatbot.netlify.app/">
+                     <button class="btn" id="chatbot-btn" data-href="https://mrpropertychatbot.netlify.app/">
                         <i class="fas fa-eye"></i> View Project
-                    </a>
-                
+                     </button>
                     <button class="gallery-btn" data-project="chatbot">
                         <i class="fas fa-images"></i>
                     </button>
@@ -81,7 +83,7 @@
                 <h2>E-commerce App</h2>
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-commerce App">
                 <div class="card-footer">
-                    <button class="btn" onclick="alert('Project not available at the moment check again later.\n Thank you.')">
+                    <button class="btn" id="btn">
                         <i class="fas fa-eye"></i> View Project
                     </button>
                     <button class="gallery-btn" data-project="ecommerc" onclick="alert('Gallery not available at the moment check again later.\n Thank you.')">
@@ -89,6 +91,20 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Project 5 -->
+             <div class="project-card">
+    <h2>Word Puzzle Game</h2>
+    <img src="/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_21_18 PM.png" alt="Word Puzzle Game">
+    <div class="card-footer">
+        <button class="btn" id="word-puzzy-btn" data-href="https://wordpuzzy.netlify.app/">
+            <i class="fas fa-eye"></i> View Project
+        </button>
+        <button class="gallery-btn" data-project="Word puzzy">
+            <i class="fas fa-images"></i>
+        </button>
+    </div>
+</div>
         </div>
    
 
@@ -125,5 +141,9 @@
     </footer>
 
  <script src="/frontend/components/scirpts/showroom.js"></script>
+    <script src="/frontend/components/scirpts/custom-alert-notification.js"></script>
+ <script src="/frontend/components/scirpts/search.js"></script>
+
+
 </body>
 </html>

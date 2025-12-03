@@ -291,7 +291,9 @@ form.addEventListener('submit', async (e) => {
             
             // Show appropriate success message
             if (autoReplyResult.status === 'fulfilled' && autoReplyResult.value) {
-                showAlert('Thank you for your message! A confirmation has been sent to your email.', 'success');
+                 showCustomAlertWithCallback(
+        'Thank you for your message! I will get back to you soon.', 'success');
+      return;
             } else {
                 showAlert('Thank you for your message! I will get back to you soon.', 'success');
             }
@@ -302,7 +304,9 @@ form.addEventListener('submit', async (e) => {
         
     } catch (error) {
         console.error('Form submission error:', error);
-        showAlert('Failed to send message. Please try again or contact me directly.', 'error');
+         showCustomAlertWithCallback(
+        'Failed to send message. Please try again or contact me directly.', 'error');
+      return;
     } finally {
         setLoading(false);
     }
