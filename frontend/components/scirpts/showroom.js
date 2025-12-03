@@ -426,7 +426,7 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
  document.getElementById('chatbot-btn').addEventListener('click', function(e) {
     e.preventDefault();
     showCustomAlertWithCallback(
-        `Mr Proper Nigeria limited AI Chatbot - An intelligent chatbot designed to assist users with inquiries, provide information,
+        `Mr Property Nigeria limited AI Chatbot - An intelligent chatbot designed to assist users with inquiries, provide information,
          and enhance user experience through natural language processing. \n Note: This Project is still under development.`,
         function(confirmed) {
             if (confirmed) {
@@ -436,7 +436,7 @@ document.querySelector('.skip-btn').addEventListener('click', function() {
             }
         }.bind(this),
         {
-            title: 'Mr Proper AI Chatbot',
+            title: 'Mr Property AI Chatbot',
             buttonText: 'Visit Now'
         }
     );
