@@ -36,3 +36,32 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.scrollTop = 0;
   });
   });
+
+
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    document.addEventListener('mousemove', (e) => {
+      if (cursor && cursorDot) {
+        cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        cursorDot.style.transform = `translate(${e.clientX - 2.5}px, ${e.clientY - 2.5}px)`;
+      }
+    });
+
+    // Hover effect for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1.5)';
+          cursorDot.style.transform = 'scale(1.5)';
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1)';
+          cursorDot.style.transform = 'scale(1)';
+        }
+      });
+    });

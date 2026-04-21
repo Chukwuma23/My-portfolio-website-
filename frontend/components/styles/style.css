@@ -467,7 +467,12 @@ section .title::after {
 }
 
 .skills-content .right .python::before {
-  width: 50%;
+  width: 70%;
+  border-radius: 20px;
+}
+
+.skills-content .right .Tailwind::before {
+  width: 80%;
   border-radius: 20px;
 }
 

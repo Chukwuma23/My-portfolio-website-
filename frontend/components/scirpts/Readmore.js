@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   var typed = new Typed(".typing", {
     strings: ["Front-end and back-end Web Developer", "Web designer", "Freelancer"],
-    typeSpeed: 100,
-    backSpeed: 60,
+    typeSpeed: 50,
+    backSpeed: 10,
     loop: true
   });
 

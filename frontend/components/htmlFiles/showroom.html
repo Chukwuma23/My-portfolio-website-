@@ -1,149 +1,1240 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Project Gallery with Slideshow</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <link rel="stylesheet" href="/frontend/components/styles/showroom.css">
-      <!-- Using Tailwind CSS via CDN for development -->
-    <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="icon" type="image/png" href="/frontend/images/chuksicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChuksTech | Project Showroom</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+       /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+    }
+
+    .cursor-dot {
+      width: 5px;
+      height: 5px;
+      background: #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #171c30 20%, #F39905 80%);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* Modern Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, #F39905);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo span {
+      background: none;
+      -webkit-text-fill-color: #F39905;
+    }
+
+    /* Search Container */
+    .search-container {
+      position: relative;
+      width: 300px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      color: white;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 0 3px rgba(243, 153, 5, 0.3);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 120px 20px 60px;
+      background: linear-gradient(135deg, rgba(2, 5, 18, 0.9), #f39805d5);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .typed-text {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #F39905;
+      font-weight: 600;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #F39905;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Project Card */
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(243, 153, 5, 0.5);
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(243, 153, 5, 0.9);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-stats {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      padding: 0.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .stat i {
+      color: #F39905;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #F39905, #ff6b6b);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(243, 153, 5, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Gallery Modal - FIXED */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 20px;
+      overflow: hidden;
+      animation: scaleIn 0.3s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+    }
+
+    .close-btn:hover {
+      transform: rotate(90deg);
+      background: rgba(243,153,5,0.8);
+    }
+
+    .gallery-container {
+      position: relative;
+      overflow: hidden;
+      height: 60vh;
+      background: #000;
+    }
+
+    .gallery-slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f39805d0;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.5rem;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .gallery-controls button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .gallery-controls button:hover {
+      background: #F39905;
+      transform: translateY(-2px);
+    }
+
+    .indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background: #F39905;
+      transform: scale(1.2);
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      background: #f39805cc;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 60px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .thumbnail.active {
+      opacity: 1;
+      border: 2px solid #F39905;
+      transform: scale(1.05);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 4rem;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      grid-column: 1 / -1;
+    }
+
+    .footer {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .heart-beat {
+      animation: heartBeat 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+      }
+      
+      .stats-bar {
+        gap: 1rem;
+      }
+      
+      .search-container {
+        width: 200px;
+      }
+      
+      .project-actions {
+        flex-direction: column;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 1rem auto;
+      }
+      
+      .gallery-container {
+        height: 50vh;
+      }
+      
+      .thumbnail {
+        width: 60px;
+        height: 45px;
+      }
+    }
+  </style>
 </head>
 <body>
-      <!-- Update the search section slightly -->
-<header class="banner flex items-center justify-between bg-yellow-500
- w-full p-2 absolute top-0 left-0 gap-4 md:flex-row md:px-10">
-    <h3 class="text-white text-lg ml-5">Project Gallery</h3>
-    <div class="flex flex-col items-center justify-center w-full">
-    <div class="search flex items-center justify-between bg-white rounded-lg p-2 w-3/6 relative">
-        <input class="px-2 w-4/6 text-black text-base border-none outline-none" 
-               type="text" 
-               placeholder="Search projects...">
-        <svg class="mr-1 cursor-pointer" 
-             xmlns="http://www.w3.org/2000/svg"
-             width="20"
-             height="20"
-             viewBox="0 0 24 24"
-             stroke="gray">
-            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
+   <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
+
+  <!-- Modern Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        Chuks<span>Tech</span>
+      </div>
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search projects...">
+      </div>
     </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Project Showroom</h1>
+    <p>Explore my creative journey through these amazing projects. Each one tells a unique story of innovation and dedication.</p>
+    <div class="typed-text">
+      <span class="typing"></span>
     </div>
-</header>
- <div class="container mt-40 mb-40 w-5/6 md:w-full">
-        <div id="image-container">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <h2>Blog Website</h2>
-                <img src="/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_20_51 PM.png" alt="Blog Website">
-                <div class="card-footer">
-                     <button class="btn" id="blog-Website-btn" data-href="https://chuksblogapp.netlify.app/">  
-                        <i class="fas fa-eye"></i> View Project
-                    </button>
-                    <button class="gallery-btn" data-project="blog">
-                        <i class="fas fa-images"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <h2>Marinetime Union Website</h2>
-                <img src="/frontend/images/paymentImages/mainmenu.png" alt="Marinetime Union Website">
-                <div class="card-footer">
-                    <button class="btn" id="Union-Website-btn" data-href="https://marinetimeworkerslumberjack.netlify.app/">  
-                        <i class="fas fa-eye"></i> View Project
-                    </button>
-                    <button class="gallery-btn" data-project="Marinetime Union Website">
-                        <i class="fas fa-images"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <h2>AI Chatbot</h2>
-                <img src="/frontend/images/chatbot Image/chatbot menu.png" alt="chatbot">
-                <div class="card-footer">
-                     <button class="btn" id="chatbot-btn" data-href="https://mrpropertychatbot.netlify.app/">
-                        <i class="fas fa-eye"></i> View Project
-                     </button>
-                    <button class="gallery-btn" data-project="chatbot">
-                        <i class="fas fa-images"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <h2>E-commerce App</h2>
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-commerce App">
-                <div class="card-footer">
-                    <button class="btn" id="btn">
-                        <i class="fas fa-eye"></i> View Project
-                    </button>
-                    <button class="gallery-btn" data-project="ecommerc" onclick="alert('Gallery not available at the moment check again later.\n Thank you.')">
-                        <i class="fas fa-images"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-             <div class="project-card">
-    <h2>Word Puzzle Game</h2>
-    <img src="/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_21_18 PM.png" alt="Word Puzzle Game">
-    <div class="card-footer">
-        <button class="btn" id="word-puzzy-btn" data-href="https://wordpuzzy.netlify.app/">
-            <i class="fas fa-eye"></i> View Project
-        </button>
-        <button class="gallery-btn" data-project="Word puzzy">
-            <i class="fas fa-images"></i>
-        </button>
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-item">
+        <div class="stat-number" id="totalProjects">0</div>
+        <div class="stat-label">Total Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="totalViews">0</div>
+        <div class="stat-label">Total Views</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="totalLikes">0</div>
+        <div class="stat-label">Total Likes</div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="projects-grid" id="projectsGrid"></div>
+
+  <!-- Gallery Modal - COMPLETE WITH ALL ELEMENTS -->
+  <div id="gallery-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="gallery-container">
+        <div class="gallery-slides"></div>
+      </div>
+      <div class="gallery-controls">
+        <button class="btn-prev"><i class="fas fa-chevron-left"></i> Previous</button>
+        <button class="btn-play-pause"><i class="fas fa-pause"></i></button>
+        <button class="btn-next">Next <i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="indicators"></div>
+      <div class="thumbnails"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Copyright © <span id="currentYear"></span> All rights reserved By <i class="fas fa-heart" style="color: #F39905;"></i> CHUKWUMA KALU</p>
+  </footer>
+
+  <script src="/frontend/components/scirpts/custom-alert-notification.js"></script>
+  <script>
+    // ==================== PROJECTS DATA ====================
+    const projects = [
+      {
+        id: 'blog',
+        name: 'Blog Website',
+        title: 'Modern Blog Platform',
+        description: 'A dynamic blogging platform with user authentication, post management, and responsive design.',
+        image: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_20_51 PM.png',
+        url: 'https://chuksblogapp.netlify.app/',
+        techStack: ['React', 'Node.js', 'MongoDB', 'Express'],
+        gallery: 'blog'
+      },
+      {
+        id: 'Marinetime Union Website',
+        name: 'Marinetime Union',
+        title: 'Maritime Union Platform',
+        description: 'Comprehensive platform for maritime workers to access resources, manage memberships, and stay connected.',
+        image: '/frontend/images/paymentImages/mainmenu.png',
+        url: 'https://marinetimeworkerslumberjack.netlify.app/',
+        techStack: ['JavaScript', 'HTML/CSS', 'Firebase'],
+        gallery: 'Marinetime Union Website'
+      },
+      {
+        id: 'chatbot',
+        name: 'AI Chatbot',
+        title: 'Mr Property AI Assistant',
+        description: 'Intelligent chatbot with natural language processing, knowledge base management, and multi-language support.',
+        image: '/frontend/images/chatbot Image/chatbot menu.png',
+        url: 'https://mrpropertychatbot.netlify.app/',
+        techStack: ['Python', 'TensorFlow', 'JavaScript', 'Flask'],
+        gallery: 'chatbot'
+      },
+      {
+        id: 'ecommerce',
+        name: 'E-commerce App',
+        title: 'Online Shopping Platform',
+        description: 'Full-featured e-commerce platform with product management, cart, and payment integration.',
+        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        url: '#',
+        techStack: ['React', 'Redux', 'Node.js', 'Stripe'],
+        gallery: 'ecommerce',
+        comingSoon: true
+      },
+      {
+        id: 'Word puzzy',
+        name: 'Word Puzzle',
+        title: 'Bilingual Word Game',
+        description: 'Educational word game with Igbo and English languages, levels, scoring, and heart system.',
+        image: '/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_21_18 PM.png',
+        url: 'https://wordpuzzy.netlify.app/',
+        techStack: ['JavaScript', 'HTML5', 'CSS3', 'LocalStorage'],
+        gallery: 'Word puzzy'
+      },
+      {
+        id: 'chuks AI',
+        name: 'Chuks AI',
+        title: 'AI Video Platform',
+        description: 'AI-powered video generation and processing platform with subscription management.',
+        image: '/frontend/images/video-ai/homepage.png',
+        url: 'https://chuksaivideogenerator.netlify.app/',
+        techStack: ['Python', 'OpenAI API', 'React', 'MongoDB'],
+        gallery: 'chuks AI'
+      }
+    ];
+
+    // ==================== GALLERY DATA ====================
+    const projectGalleries = {
+      'blog': {
+        title: 'Blog Website Gallery',
+        images: [
+          { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_25_43 PM.png', caption: 'Blog Post Page' },
+          { src: '/frontend/images/blogImages/blog pages.png', caption: 'Post Page' },
+          { src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 10_50_29 AM.png', caption: 'Single Post Page' },
+          { src: '/frontend/images/blogImages/bloghomepage.png', caption: 'Postlist Page' },
+          { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_42_07 PM.png', caption: 'Login Page' },
+          { src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 1_57_24 PM.png', caption: 'Write a post page' },
+          { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_41_25 PM.png', caption: 'AUTHENTICATION' }
+        ]
+      },
+      'Marinetime Union Website': {
+        title: 'Marinetime Union Website Gallery',
+        images: [
+          { src: '/frontend/images/paymentImages/pagemainmenu.png', caption: 'Homepage' },
+          { src: '/frontend/images/paymentImages/about page.png', caption: 'About Section' },
+          { src: '/frontend/images/paymentImages/members poters.png', caption: 'Members Dashboard' },
+          { src: '/frontend/images/paymentImages/news management porter.png', caption: 'News Dashboard' },
+          { src: '/frontend/images/paymentImages/admin dashboard.png', caption: 'Admin Dashboard' },
+          { src: '/frontend/images/paymentImages/news management.png', caption: 'news management Dashboard' }
+        ]
+      },
+      'chatbot': {
+        title: 'mr proper AI Chatbot Gallery',
+        images: [
+          { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_surx8fsurx8fsurx.png', caption: 'chatbot mobile view' },
+          { src: '/frontend/images/chatbot Image/knowlegebase management.png', caption: 'Knowledgebase Management' },
+          { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_y1nsn4y1nsn4y1ns.png', caption: 'adding new knowledge' },
+          { src: '/frontend/images/chatbot Image/destop login.png', caption: 'Desktop Login Page' },
+          { src: '/frontend/images/chatbot Image/Edit knowlegebase.png', caption: 'Edit Knowledgebase' },
+          { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_yuqzvyuqzvyuqzvy.png', caption: 'chatbot desktop view' },
+          { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_9eu7ok9eu7ok9eu7.png', caption: 'mobile login page and signup page' }
+        ]
+      },
+      'ecommerce': {
+        title: 'E-commerce App Gallery',
+        images: [
+          { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Product Listing' },
+          { src: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Product Details' },
+          { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Shopping Cart' }
+        ]
+      },
+      'Word puzzy': {
+        title: 'Word Puzzy Game Gallery',
+        images: [
+          { src: '/frontend/images/word puzzy/a developer portfoli.png', caption: 'Light and dark theme' },
+          { src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 4_00_13 PM.png', caption: 'Igbo Language Section' },
+          { src: '/frontend/images/word puzzy/level selection.png', caption: 'Level Selection Page' },
+          { src: '/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_40_16 PM.png', caption: 'Refill heart page' },
+          { src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 5_20_46 PM.png', caption: 'Game Play Page' }
+        ]
+      },
+      'chuks AI': {
+        title: 'chuks AI Gallery',
+        images: [
+          { src: '/frontend/images/video-ai/homepage.png', caption: 'Homepage' },
+          { src: '/frontend/images/video-ai/frequently ask questions page.png', caption: 'Frequently ask questions page' },
+          { src: '/frontend/images/video-ai/price page.png', caption: 'Price list Page' },
+          { src: '/frontend/images/video-ai/review page.png', caption: 'Review page' },
+          { src: '/frontend/images/video-ai/footer 1.png', caption: 'Navigation page' }
+        ]
+      }
+    };
+
+    // ==================== STATE ====================
+    let projectStats = {};
+    let likedProjects = JSON.parse(localStorage.getItem('likedProjects') || '{}');
+    
+    // Gallery state
+    let currentSlide = 0;
+    let isPlaying = true;
+    let slideInterval;
+    let currentGallery = null;
+    let currentGalleryImages = [];
+
+    // ==================== API FUNCTIONS ====================
+    function getBaseURL() {
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:5000';
+      }
+      return 'https://my-portfolio-message-api-naci.onrender.com';
+    }
+
+    async function getVisitorIP() {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        console.error('Failed to get IP:', error);
+        return null;
+      }
+    }
+
+    async function trackView(projectId, projectName) {
+      try {
+        const visitorIp = await getVisitorIP();
+        const response = await fetch(`${getBaseURL()}/api/stats/track-view`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ projectId, projectName, visitorIp })
+        });
+        const data = await response.json();
+        if (data.success) {
+          loadProjectStats();
+        }
+        return data;
+      } catch (error) {
+        console.error('Error tracking view:', error);
+      }
+    }
+
+    async function trackLike(projectId, element) {
+      try {
+        if (likedProjects[projectId]) {
+          showCustomAlertWithCallback('You already liked this project! ❤️', null, {
+            title: 'Already Liked',
+            buttonText: 'OK'
+          });
+          return;
+        }
+
+        const response = await fetch(`${getBaseURL()}/api/stats/track-like`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ projectId })
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+          likedProjects[projectId] = true;
+          localStorage.setItem('likedProjects', JSON.stringify(likedProjects));
+          
+          if (element) {
+            element.classList.add('heart-beat');
+            setTimeout(() => element.classList.remove('heart-beat'), 300);
+          }
+          
+          loadProjectStats();
+          
+          showCustomAlertWithCallback('❤️ Thank you for loving this project!', null, {
+            title: 'Thanks!',
+            buttonText: 'OK'
+          });
+        }
+      } catch (error) {
+        console.error('Error tracking like:', error);
+      }
+    }
+
+    async function loadProjectStats() {
+      try {
+        const response = await fetch(`${getBaseURL()}/api/stats/all-stats`);
+        const data = await response.json();
+        if (data.success) {
+          projectStats = {};
+          data.stats.forEach(stat => {
+            projectStats[stat.projectId] = {
+              views: stat.views,
+              likes: stat.likes
+            };
+          });
+          updateUI();
+        }
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    function updateUI() {
+      let totalViews = 0;
+      let totalLikes = 0;
+      
+      Object.values(projectStats).forEach(stat => {
+        totalViews += stat.views;
+        totalLikes += stat.likes;
+      });
+      
+      document.getElementById('totalProjects').textContent = projects.length;
+      document.getElementById('totalViews').textContent = totalViews.toLocaleString();
+      document.getElementById('totalLikes').textContent = totalLikes.toLocaleString();
+      
+      projects.forEach(project => {
+        const stats = projectStats[project.id] || { views: 0, likes: 0 };
+        const viewElement = document.querySelector(`[data-project-id="${project.id}"] .view-count`);
+        const likeElement = document.querySelector(`[data-project-id="${project.id}"] .like-count`);
+        
+        if (viewElement) viewElement.textContent = stats.views || 0;
+        if (likeElement) likeElement.textContent = stats.likes || 0;
+      });
+    }
+
+    // ==================== GALLERY FUNCTIONS ====================
+    function openGallery(projectId) {
+      console.log('Opening gallery for:', projectId);
+      console.log('Available galleries:', Object.keys(projectGalleries));
+      
+      if (projectGalleries[projectId]) {
+        currentGallery = projectGalleries[projectId];
+        currentGalleryImages = currentGallery.images;
+        currentSlide = 0;
+        initGallery();
+        const modal = document.getElementById('gallery-modal');
+        if (modal) {
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+      } else {
+        console.error('Gallery not found for:', projectId);
+        showCustomAlertWithCallback('Gallery images are being prepared. Please check back later! 📸', null, {
+          title: 'Coming Soon',
+          buttonText: 'OK'
+        });
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('gallery-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        stopSlideShow();
+      }
+    }
+
+    function initGallery() {
+      const gallerySlides = document.querySelector('.gallery-slides');
+      const indicators = document.querySelector('.indicators');
+      const thumbnails = document.querySelector('.thumbnails');
+      
+      if (!gallerySlides || !indicators || !thumbnails) {
+        console.error('Gallery elements not found!');
+        return;
+      }
+      
+      // Clear previous content
+      gallerySlides.innerHTML = '';
+      indicators.innerHTML = '';
+      thumbnails.innerHTML = '';
+
+      // Create slides
+      currentGalleryImages.forEach((item, index) => {
+        // Create slide
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.innerHTML = `
+          <img src="${item.src}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">
+          <div class="slide-caption">${item.caption}</div>
+        `;
+        gallerySlides.appendChild(slide);
+
+        // Create indicator
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicators.appendChild(indicator);
+
+        // Create thumbnail
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'thumbnail';
+        if (index === 0) thumbnail.classList.add('active');
+        thumbnail.innerHTML = `<img src="${item.src}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/80x60?text=No+Image'">`;
+        thumbnail.addEventListener('click', () => goToSlide(index));
+        thumbnails.appendChild(thumbnail);
+      });
+
+      startSlideShow();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateGallery();
+    }
+
+    function nextSlide() {
+      if (currentGalleryImages && currentGalleryImages.length > 0) {
+        currentSlide = (currentSlide + 1) % currentGalleryImages.length;
+        updateGallery();
+      }
+    }
+
+    function prevSlide() {
+      if (currentGalleryImages && currentGalleryImages.length > 0) {
+        currentSlide = (currentSlide - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+        updateGallery();
+      }
+    }
+
+    function updateGallery() {
+      const gallerySlides = document.querySelector('.gallery-slides');
+      if (gallerySlides) {
+        gallerySlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      
+      document.querySelectorAll('.indicator').forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+      });
+      
+      document.querySelectorAll('.thumbnail').forEach((thumbnail, index) => {
+        thumbnail.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function startSlideShow() {
+      if (currentGalleryImages && currentGalleryImages.length > 0) {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 4000);
+        isPlaying = true;
+        const playPauseBtn = document.querySelector('.btn-play-pause');
+        if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+    }
+
+    function stopSlideShow() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+      }
+      isPlaying = false;
+      const playPauseBtn = document.querySelector('.btn-play-pause');
+      if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    }
+
+    function togglePlayPause() {
+      if (isPlaying) {
+        stopSlideShow();
+      } else {
+        startSlideShow();
+      }
+    }
+
+    // ==================== RENDER PROJECTS ====================
+    function renderProjects(searchTerm = '') {
+      const grid = document.getElementById('projectsGrid');
+      const filteredProjects = projects.filter(project => 
+        project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      
+      if (filteredProjects.length === 0) {
+        grid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i><p>No projects found. Try a different search term!</p></div>';
+        return;
+      }
+      
+      grid.innerHTML = filteredProjects.map(project => `
+        <div class="project-card" data-project-id="${project.id}">
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x250?text=Image+Not+Found'">
+            <div class="project-overlay">
+              ${project.comingSoon ? '<div class="project-badge">Coming Soon</div>' : ''}
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-title">${project.title}</div>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">${project.description}</p>
+            <div class="tech-stack" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              ${project.techStack.map(tech => `<span style="background: rgba(243,153,5,0.2); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem;">${tech}</span>`).join('')}
+            </div>
+            <div class="project-stats">
+              <div class="stat">
+                <i class="fas fa-eye"></i>
+                <span class="view-count">${projectStats[project.id]?.views || 0}</span>
+                <span>views</span>
+              </div>
+              <div class="stat like-btn" data-like-project="${project.id}" style="cursor: pointer;">
+                <i class="fas fa-heart" style="color: ${likedProjects[project.id] ? '#ff6b6b' : '#F39905'}"></i>
+                <span class="like-count">${projectStats[project.id]?.likes || 0}</span>
+                <span>likes</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-primary view-project-btn" data-url="${project.url}" data-project-id="${project.id}" data-project-name="${project.name}" ${project.comingSoon ? 'disabled' : ''}>
+                <i class="fas fa-external-link-alt"></i> ${project.comingSoon ? 'Coming Soon' : 'View Project'}
+              </button>
+              <button class="btn btn-secondary gallery-btn" data-project-gallery="${project.gallery}">
+                <i class="fas fa-images"></i> Gallery
+              </button>
+            </div>
+          </div>
         </div>
-   
+      `).join('');
+      
+      // Add event listeners
+      document.querySelectorAll('.view-project-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const projectId = btn.dataset.projectId;
+          const projectName = btn.dataset.projectName;
+          const url = btn.dataset.url;
+          
+          if (url === '#') {
+            showCustomAlertWithCallback('This project is coming soon! Stay tuned! 🚀', null, {
+              title: 'Coming Soon',
+              buttonText: 'OK'
+            });
+            return;
+          }
+          
+          await trackView(projectId, projectName);
+          window.open(url, '_blank');
+        });
+      });
+      
+      document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const projectId = btn.dataset.likeProject;
+          await trackLike(projectId, btn);
+        });
+      });
+      
+      document.querySelectorAll('.gallery-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const galleryId = btn.getAttribute('data-project-gallery');
+          console.log('Gallery button clicked for:', galleryId);
+          openGallery(galleryId);
+        });
+      });
+    }
 
-    <!-- Modal for Gallery -->
-    <div id="gallery-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="gallery-container">
-                <div class="gallery-slides">
-                    <!-- Slides will be inserted by JavaScript -->
-                </div>
-            </div>
-            
-            <div class="gallery-controls">
-                <button class="gallery-btn btn-prev">Previous</button>
-                <button class="gallery-btn btn-play-pause">❚❚</button>
-                <button class="gallery-btn btn-next">Next</button>
-            </div>
-            
-            <div class="indicators">
-                <!-- Indicators will be inserted by JavaScript -->
-            </div>
-            
-            <div class="thumbnails">
-                <!-- Thumbnails will be inserted by JavaScript -->
-            </div>
-        </div>
-    </div>
- </div>
-   <footer class="footer mt-auto py-3  bg-black w-full text-center text-white text-sm">
-        <span>Copyright © <script>
-                document.write(new Date().getFullYear());
-            </script> All rights reserved By <i class="fa fa-heart"></i> <a class="text-yellow-500" href="https://m.facebook.com/dark.r34">CHUKWUMA KALU</a></p>
-    </footer>
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up gallery controls
+      const closeBtn = document.querySelector('.close-btn');
+      const prevBtn = document.querySelector('.btn-prev');
+      const nextBtn = document.querySelector('.btn-next');
+      const playPauseBtn = document.querySelector('.btn-play-pause');
+      
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+      if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
+      
+      // Close modal when clicking outside
+      const modal = document.getElementById('gallery-modal');
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeModal();
+        });
+      }
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (modal && modal.style.display === 'block') {
+          if (e.key === 'ArrowLeft') prevSlide();
+          if (e.key === 'ArrowRight') nextSlide();
+          if (e.key === 'Escape') closeModal();
+          if (e.key === ' ') {
+            e.preventDefault();
+            togglePlayPause();
+          }
+        }
+      });
 
- <script src="/frontend/components/scirpts/showroom.js"></script>
-    <script src="/frontend/components/scirpts/custom-alert-notification.js"></script>
- <script src="/frontend/components/scirpts/search.js"></script>
+      // Search functionality
+      let searchTimeout;
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(() => {
+            renderProjects(e.target.value);
+          }, 300);
+        });
+      }
+
+      // Typed.js animation
+      new Typed(".typing", {
+        strings: ["✨ Explore my creative journey", "🎨 6 Amazing Projects", "💡 Innovation meets design", "🚀 Let's build something great"],
+        typeSpeed: 50,
+        backSpeed: 30,
+        loop: true
+      });
+
+      // Navbar scroll effect
+      window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Set current year
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Initialize
+      loadProjectStats().then(() => {
+        renderProjects();
+      });
+    });
 
 
+     // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    document.addEventListener('mousemove', (e) => {
+      if (cursor && cursorDot) {
+        cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        cursorDot.style.transform = `translate(${e.clientX - 2.5}px, ${e.clientY - 2.5}px)`;
+      }
+    });
+
+    // Hover effect for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1.5)';
+          cursorDot.style.transform = 'scale(1.5)';
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1)';
+          cursorDot.style.transform = 'scale(1)';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

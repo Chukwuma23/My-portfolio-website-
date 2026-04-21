@@ -47,8 +47,36 @@
       color: #fff;
     }
 
+      .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+    }
+
+    .cursor-dot {
+      width: 5px;
+      height: 5px;
+      background: #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
     html {
       scroll-behavior: smooth;
+    }
+
+     body {
+      font-family: 'Poppins', sans-serif !important;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
     }
 
     /* custom scroll bar */
@@ -152,7 +180,7 @@
     }
 
     .navbar .logo a {
-      color: #fff;
+      color: #fff !;
       font-size: 35px;
       font-weight: 600;
     }
@@ -173,7 +201,7 @@
 
     .navbar .menu li a {
       display: block;
-      color: #fff;
+      color: #fff !important;
       font-size: 18px;
       font-weight: 500;
       margin-left: 25px;
@@ -934,6 +962,9 @@
 </head>
 
 <body>
+ <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
   <div class="scroll-up-btn">
     <i class="fas fa-angle-up"></i>
   </div>
@@ -944,7 +975,7 @@
         </a>
       </div>
       <ul class="menu">
-        <li><a href="/frontend\index.html" class="menu-btn">Home</a></li>
+        <li><a href="/index.html" class="menu-btn">Home</a></li>
         <li><a href="./showroom.html" class="menu-btn">Projects</a></li>
         
       </ul>
@@ -1006,7 +1037,7 @@
       <i class="fa fa-heart" style="color: red;"></i> 
       <a href="https://m.facebook.com/dark.r34">Chukwuma</a></span>
   </footer>
-  <script src="/frontend\components\scirpts\script.js"></script>
+   <script src="/frontend\components\scirpts\skill.js"></script>
 </body>
 
 </html>

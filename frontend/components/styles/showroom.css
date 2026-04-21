@@ -406,3 +406,38 @@ html, body {
         padding: 4px 8px;
     }
 }
+
+
+.stats-container {
+  transition: all 0.3s ease;
+}
+
+.like-button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.like-button:hover {
+  transform: scale(1.1);
+}
+
+.like-button:active {
+  transform: scale(0.95);
+}
+
+.view-stats i, .like-stats i {
+  font-size: 14px;
+}
+
+.like-stats i {
+  transition: all 0.2s ease;
+}
+
+.like-button:hover i {
+  animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}

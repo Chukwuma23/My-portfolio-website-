@@ -51,8 +51,38 @@
       color: #fff;
     }
 
+     body {
+      font-family: 'Poppins', sans-serif !important;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+
     html {
       scroll-behavior: smooth;
+    }
+
+      /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+    }
+
+    .cursor-dot {
+      width: 5px;
+      height: 5px;
+      background: #F39905;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
     }
 
     /* custom scroll bar */
@@ -295,6 +325,7 @@
     /* about section styling */
     .about .title::after {
       content: "Who Am I";
+      background-color: rgba(245, 245, 245, 0.318);
     }
 
     .about .about-content .left {
@@ -900,6 +931,11 @@
 </head>
 
 <body>
+ <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
+
   <div class="scroll-up-btn">
     <i class="fas fa-angle-up"></i>
   </div>
@@ -968,6 +1004,36 @@
       </script> All rights reserved By <i class="fa fa-heart"></i> <a href="https://m.facebook.com/dark.r34">CHUKWUMA</a></span>
   </footer>
 <script src="/frontend\components\scirpts\ReadMore.js"></script>
+ <script>
+   // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    document.addEventListener('mousemove', (e) => {
+      if (cursor && cursorDot) {
+        cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        cursorDot.style.transform = `translate(${e.clientX - 2.5}px, ${e.clientY - 2.5}px)`;
+      }
+    });
+
+    // Hover effect for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1.5)';
+          cursorDot.style.transform = 'scale(1.5)';
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        if (cursor && cursorDot) {
+          cursor.style.transform = 'scale(1)';
+          cursorDot.style.transform = 'scale(1)';
+        }
+      });
+    });
+
+ </script>
 </body>
 
 </html>
