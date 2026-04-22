@@ -149,6 +149,7 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 1rem;
       animation: fadeInUp 0.7s ease;
+      margin-top: 20px;
     }
     .hero p {
       font-size: 1.2rem;
@@ -551,7 +552,13 @@
       .cursor, .cursor-dot { display: none; } /* better mobile UX */
     }
     @media (max-width: 520px) {
-      .hero { padding: 110px 16px 50px; }
+      .hero {
+         padding: 110px 16px 50px; 
+        }
+        .hero h1 {
+          font-size: 26px;
+        }
+        .logo { font-size: 1.6rem; }
       .typed-text { font-size: 1.1rem; }
       .project-title { font-size: 1.3rem; }
     }
@@ -618,14 +625,71 @@
       { id: 'chuks AI', name: 'Chuks AI', title: 'AI Video Platform', description: 'AI-powered video generation & subscription.', image: '/frontend/images/video-ai/homepage.png', url: 'https://chuksaivideogenerator.netlify.app/', techStack: ['OpenAI API', 'React'], gallery: 'chuks AI' }
     ];
 
-    const projectGalleries = {
-      'blog': { title: 'Blog Website', images: [{ src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_25_43 PM.png', caption: 'Post Page' }, { src: '/frontend/images/blogImages/bloghomepage.png', caption: 'Homepage' }] },
-      'Marinetime Union Website': { title: 'Maritime Gallery', images: [{ src: '/frontend/images/paymentImages/about page.png', caption: 'About' }, { src: '/frontend/images/paymentImages/admin dashboard.png', caption: 'Admin' }] },
-      'chatbot': { title: 'AI Chatbot', images: [{ src: '/frontend/images/chatbot Image/knowlegebase management.png', caption: 'Knowledge Base' }, { src: '/frontend/images/chatbot Image/destop login.png', caption: 'Login' }] },
-      'ecommerce': { title: 'E-commerce', images: [{ src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d', caption: 'Shopping' }] },
-      'Word puzzy': { title: 'Word Puzzle', images: [{ src: '/frontend/images/word puzzy/level selection.png', caption: 'Levels' }, { src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 5_20_46 PM.png', caption: 'Gameplay' }] },
-      'chuks AI': { title: 'Chuks AI', images: [{ src: '/frontend/images/video-ai/price page.png', caption: 'Pricing' }, { src: '/frontend/images/video-ai/review page.png', caption: 'Reviews' }] }
-    };
+   const projectGalleries = {
+  'blog': {
+    title: 'Blog Website Gallery',
+    images: [
+      { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_25_43 PM.png', caption: 'Blog Post Page' },
+      { src: '/frontend/images/blogImages/blog pages.png', caption: 'Post Page' },
+      { src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 10_50_29 AM.png', caption: 'Single Post Page' },
+      { src: '/frontend/images/blogImages/bloghomepage.png', caption: 'Postlist Page' },
+      { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_42_07 PM.png', caption: 'Login Page' },
+      { src: '/frontend/images/blogImages/Chuks Blog App - Personal - Microsoft​ Edge 10_23_2025 1_57_24 PM.png', caption: 'Write a post page' },
+      { src: '/frontend/images/blogImages/Chuks Blog App 10_23_2025 2_41_25 PM.png', caption: 'AUTHENTICATION' }
+    ]
+  },
+  'Marinetime Union Website': {
+    title: 'Marinetime Union Website Gallery',
+    images: [
+      { src: '/frontend/images/paymentImages/pagemainmenu.png', caption: 'Homepage' },
+      { src: '/frontend/images/paymentImages/about page.png', caption: 'About Section' },
+      { src: '/frontend/images/paymentImages/members poters.png', caption: 'Members Dashboard' },
+      { src: '/frontend/images/paymentImages/news management porter.png', caption: 'News Dashboard' },
+      { src: '/frontend/images/paymentImages/admin dashboard.png', caption: 'Admin Dashboard' },
+      { src: '/frontend/images/paymentImages/news management.png', caption: 'news management Dashboard' }
+    ]
+  },
+  'chatbot': {
+    title: 'mr proper AI Chatbot Gallery',
+    images: [
+      { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_surx8fsurx8fsurx.png', caption: 'chatbot mobile view' },
+      { src: '/frontend/images/chatbot Image/knowlegebase management.png', caption: 'Knowledgebase Management' },
+      { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_y1nsn4y1nsn4y1ns.png', caption: 'adding new knowledge' },
+      { src: '/frontend/images/chatbot Image/destop login.png', caption: 'Desktop Login Page' },
+      { src: '/frontend/images/chatbot Image/Edit knowlegebase.png', caption: 'Edit Knowledgebase' },
+      { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_yuqzvyuqzvyuqzvy.png', caption: 'chatbot desktop view' },
+      { src: '/frontend/images/chatbot Image/Gemini_Generated_Image_9eu7ok9eu7ok9eu7.png', caption: 'mobile login page and signup page' }
+    ]
+  },
+  'ecommerce': {
+    title: 'E-commerce App Gallery',
+    images: [
+      { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Product Listing' },
+      { src: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Product Details' },
+      { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', caption: 'Shopping Cart' }
+    ]
+  },
+  'Word puzzy': {
+    title: 'Word Puzzy Game Gallery',
+    images: [
+      { src: '/frontend/images/word puzzy/a developer portfoli.png', caption: 'Light and dark theme' },
+      { src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 4_00_13 PM.png', caption: 'Igbo Language Section' },
+      { src: '/frontend/images/word puzzy/level selection.png', caption: 'Level Selection Page' },
+      { src: '/frontend/images/word puzzy/Word Puzzle Game and 1 more page - Personal - Microsoft​ Edge 12_3_2025 3_40_16 PM.png', caption: 'Refill heart page' },
+      { src: '/frontend/images/word puzzy/Word Puzzle Game - Personal - Microsoft​ Edge 12_3_2025 5_20_46 PM.png', caption: 'Game Play Page' }
+    ]
+  },
+  'chuks AI': {
+    title: 'chuks AI Gallery',
+    images: [
+      { src: '/frontend/images/video-ai/homepage.png', caption: 'Homepage' },
+      { src: '/frontend/images/video-ai/frequently ask questions page.png', caption: 'Frequently ask questions page' },
+      { src: '/frontend/images/video-ai/price page.png', caption: 'Price list Page' },
+      { src: '/frontend/images/video-ai/review page.png', caption: 'Review page' },
+      { src: '/frontend/images/video-ai/footer 1.png', caption: 'Navigation page' }
+    ]
+  }
+};
     // extend fallback: fill minimal missing images to avoid emptiness
     for(let key in projectGalleries) {
       if(projectGalleries[key].images.length === 0) projectGalleries[key].images = [{ src: 'https://via.placeholder.com/800x450?text=Preview+Ready', caption: 'Gallery preview' }];
@@ -657,9 +721,9 @@
     function togglePlayPause(){ isPlaying? stopSlideShow(): startSlideShow(); }
 
     function renderProjects(search=''){ let filtered=projects.filter(p=> p.name.toLowerCase().includes(search.toLowerCase())||p.title.toLowerCase().includes(search.toLowerCase())||p.description.toLowerCase().includes(search.toLowerCase())); let grid=document.getElementById('projectsGrid'); if(filtered.length===0){ grid.innerHTML='<div class="no-results"><i class="fas fa-search"></i><p>No projects match — try another keyword</p></div>'; return; } grid.innerHTML=filtered.map(p=>`<div class="project-card" data-project-id="${p.id}"><div class="project-image"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x250?text=Preview'"><div class="project-overlay">${p.comingSoon?'<div class="project-badge">Coming Soon</div>':''}</div></div><div class="project-info"><div class="project-title">${p.title}</div><p style="opacity:0.85; margin-bottom:0.6rem;">${p.description}</p><div class="tech-stack">${p.techStack.map(t=>`<span class="tech-badge">${t}</span>`).join('')}</div><div class="project-stats"><div class="stat"><i class="fas fa-eye"></i><span class="view-count">${projectStats[p.id]?.views||0}</span><span>views</span></div><div class="stat like-btn" data-like-project="${p.id}"><i class="fas fa-heart" style="color:${likedProjects[p.id]?'#ff6b6b':'#F39905'}"></i><span class="like-count">${projectStats[p.id]?.likes||0}</span><span>likes</span></div></div><div class="project-actions"><button class="btn btn-primary view-project" data-url="${p.url}" data-id="${p.id}" data-name="${p.name}" ${p.comingSoon?'disabled':''}><i class="fas fa-external-link-alt"></i> ${p.comingSoon?'Coming Soon':'View Project'}</button><button class="btn btn-secondary gallery-open" data-gallery="${p.gallery}"><i class="fas fa-images"></i> Gallery</button></div></div></div>`).join(''); attachEvents(); }
-    function attachEvents(){ document.querySelectorAll('.view-project').forEach(btn=>{ btn.addEventListener('click',async(e)=>{ let url=btn.dataset.url, id=btn.dataset.id, name=btn.dataset.name; if(url==='#'){ showAlert('🚀 Launching soon!'); return; } await trackView(id,name); window.open(url,'_blank'); }); }); document.querySelectorAll('.like-btn').forEach(btn=>{ btn.addEventListener('click',async(e)=>{ e.stopPropagation(); let pid=btn.dataset.likeProject; await trackLike(pid,btn); }); }); document.querySelectorAll('.gallery-open').forEach(btn=>{ btn.addEventListener('click',(e)=>{ e.preventDefault(); let gid=btn.dataset.gallery; openGallery(gid); }); }); }
+    function attachEvents(){ document.querySelectorAll('.view-project').forEach(btn=>{ btn.addEventListener('click',async(e)=>{ let url=btn.dataset.url, id=btn.dataset.id, name=btn.dataset.name; if(url==='#'){ showAlert(' Launching soon!'); return; } await trackView(id,name); window.open(url,'_blank'); }); }); document.querySelectorAll('.like-btn').forEach(btn=>{ btn.addEventListener('click',async(e)=>{ e.stopPropagation(); let pid=btn.dataset.likeProject; await trackLike(pid,btn); }); }); document.querySelectorAll('.gallery-open').forEach(btn=>{ btn.addEventListener('click',(e)=>{ e.preventDefault(); let gid=btn.dataset.gallery; openGallery(gid); }); }); }
 
-    document.addEventListener('DOMContentLoaded',()=>{ document.getElementById('currentYear').innerText=new Date().getFullYear(); new Typed(".typing",{ strings:["✨ Explore my creative journey","🎨 6 Amazing Projects","💡 Innovation meets design","🚀 Let's build something great"], typeSpeed:45, backSpeed:30, loop:true }); window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50); }); document.querySelector('.close-btn')?.addEventListener('click',closeModal); document.querySelector('.btn-prev')?.addEventListener('click',prevSlide); document.querySelector('.btn-next')?.addEventListener('click',nextSlide); document.querySelector('.btn-play-pause')?.addEventListener('click',togglePlayPause); document.getElementById('gallery-modal')?.addEventListener('click',(e)=>{ if(e.target===document.getElementById('gallery-modal')) closeModal(); }); document.getElementById('searchInput').addEventListener('input',(e)=>{ renderProjects(e.target.value); }); loadProjectStats().then(()=>renderProjects()); });
+    document.addEventListener('DOMContentLoaded',()=>{ document.getElementById('currentYear').innerText=new Date().getFullYear(); new Typed(".typing",{ strings:[" Explore my creative journey"," Amazing Projects"," Innovation meets design"," Let's build something great"], typeSpeed:45, backSpeed:30, loop:true }); window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50); }); document.querySelector('.close-btn')?.addEventListener('click',closeModal); document.querySelector('.btn-prev')?.addEventListener('click',prevSlide); document.querySelector('.btn-next')?.addEventListener('click',nextSlide); document.querySelector('.btn-play-pause')?.addEventListener('click',togglePlayPause); document.getElementById('gallery-modal')?.addEventListener('click',(e)=>{ if(e.target===document.getElementById('gallery-modal')) closeModal(); }); document.getElementById('searchInput').addEventListener('input',(e)=>{ renderProjects(e.target.value); }); loadProjectStats().then(()=>renderProjects()); });
 
     // custom cursor hide on mobile, fine on desktop
     if(window.matchMedia("(max-width: 880px)").matches){ document.querySelector('.cursor')?.remove(); document.querySelector('.cursor-dot')?.remove(); } else { document.addEventListener('mousemove',(e)=>{ let cur=document.querySelector('.cursor'), dot=document.querySelector('.cursor-dot'); if(cur){ cur.style.transform=`translate(${e.clientX-12}px, ${e.clientY-12}px)`; } if(dot) dot.style.transform=`translate(${e.clientX-3}px, ${e.clientY-3}px)`; }); document.querySelectorAll('a,button,.project-card').forEach(el=>{ el.addEventListener('mouseenter',()=>{ let cur=document.querySelector('.cursor'); if(cur) cur.style.transform+=' scale(1.4)'; }); el.addEventListener('mouseleave',()=>{ let cur=document.querySelector('.cursor'); if(cur) cur.style.transform=cur.style.transform.replace(' scale(1.4)',''); }); }); }
