@@ -2,11 +2,14 @@
 
 // Function to get base URL
 function getBaseURL() {
+  // If we're on localhost, use localhost backend
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://localhost:5000';
   }
+  // Otherwise use the production backend
   return 'https://my-portfolio-message-api-naci.onrender.com';
 }
+
 
 // Get visitor IP
 async function getVisitorIP() {
@@ -135,21 +138,6 @@ async function loadAllProjectStats() {
   }
 }
 
-// Load specific project stats
-async function loadProjectStats(projectId) {
-  try {
-    const response = await fetch(`${getBaseURL()}/api/stats/stats/${encodeURIComponent(projectId)}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error loading project stats:', error);
-    return { views: 0, likes: 0 };
-  }
-}
-
 // Add like button and stats to project cards
 function addProjectStats() {
   const projectCards = document.querySelectorAll('.project-card');
@@ -158,10 +146,10 @@ function addProjectStats() {
     const h2 = card.querySelector('h2');
     if (!h2) return;
     
-    const projectName = h2.textContent;
+    const projectName = h2.textContent.trim();
     let projectId = '';
     
-    // Map project names to IDs
+    // Map project names to IDs - MAKE SURE THIS MATCHES EXACTLY
     const projectIdMap = {
       'Blog Website': 'blog',
       'Marinetime Union Website': 'Marinetime Union Website',
@@ -171,7 +159,14 @@ function addProjectStats() {
       'chuks AI': 'chuks AI'
     };
     
-    projectId = projectIdMap[projectName] || projectName.toLowerCase().replace(/\s+/g, '-');
+    projectId = projectIdMap[projectName];
+    
+    // If not found in map, create a slug
+    if (!projectId) {
+      projectId = projectName.toLowerCase().replace(/\s+/g, '-');
+    }
+    
+    console.log('Adding stats for project:', { projectName, projectId }); // Debug log
     
     // Set data attribute on card
     card.setAttribute('data-project-id', projectId);
@@ -198,12 +193,16 @@ function addProjectStats() {
       footer.insertAdjacentHTML('beforeend', statsHTML);
       
       // Load stats for this project
-      loadProjectStats(projectId).then(stats => {
-        const viewSpan = card.querySelector('.view-count');
-        const likeSpan = card.querySelector('.like-count');
-        if (viewSpan) viewSpan.textContent = stats.views || 0;
-        if (likeSpan) likeSpan.textContent = stats.likes || 0;
-      });
+      if (projectId && projectId !== 'undefined') {
+        loadProjectStats(projectId).then(stats => {
+          const viewSpan = card.querySelector('.view-count');
+          const likeSpan = card.querySelector('.like-count');
+          if (viewSpan) viewSpan.textContent = stats.views || 0;
+          if (likeSpan) likeSpan.textContent = stats.likes || 0;
+        });
+      } else {
+        console.error('Invalid projectId for:', projectName);
+      }
     }
   });
   
@@ -212,7 +211,9 @@ function addProjectStats() {
     btn.addEventListener('click', async (e) => {
       e.stopPropagation();
       const projectId = btn.getAttribute('data-like-project');
-      await trackLike(projectId, btn);
+      if (projectId && projectId !== 'undefined') {
+        await trackLike(projectId, btn);
+      }
     });
   });
 }

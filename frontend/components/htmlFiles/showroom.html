@@ -728,5 +728,6 @@
     // custom cursor hide on mobile, fine on desktop
     if(window.matchMedia("(max-width: 880px)").matches){ document.querySelector('.cursor')?.remove(); document.querySelector('.cursor-dot')?.remove(); } else { document.addEventListener('mousemove',(e)=>{ let cur=document.querySelector('.cursor'), dot=document.querySelector('.cursor-dot'); if(cur){ cur.style.transform=`translate(${e.clientX-12}px, ${e.clientY-12}px)`; } if(dot) dot.style.transform=`translate(${e.clientX-3}px, ${e.clientY-3}px)`; }); document.querySelectorAll('a,button,.project-card').forEach(el=>{ el.addEventListener('mouseenter',()=>{ let cur=document.querySelector('.cursor'); if(cur) cur.style.transform+=' scale(1.4)'; }); el.addEventListener('mouseleave',()=>{ let cur=document.querySelector('.cursor'); if(cur) cur.style.transform=cur.style.transform.replace(' scale(1.4)',''); }); }); }
   </script>
+  <script src="/frontend\components\scirpts\showroom.js"></script>
 </body>
 </html>
